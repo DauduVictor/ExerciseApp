@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'refactoredWidgets.dart';
-import 'package:untitled1/dashboard/main.dart';
 
 class ContactUs extends StatelessWidget {
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'bottomNavigationColor.dart';
+import 'dashboard/bottomNavigationColor.dart';
 import 'package:untitled1/settings/allSettings.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 enum myColor{
   today, exercise, settings,
 }
@@ -58,19 +60,29 @@ class _MyMainState extends State<MyMain> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0,bottom: 20.0, left: 300.0,),
-                        child: Container(
-                          width: 50.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.deepOrangeAccent.withOpacity(0.2),
+                        child: GestureDetector(
+                          onTap: (){
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (context){
+                                  return Container();
+                                }
+                            );
+                          },
+                          child: Container(
+                            width: 50.0,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.deepOrangeAccent.withOpacity(0.2),
+                            ),
+                            child: Icon(
+                              Icons.filter_list_rounded,
+                              color: Colors.white,
+                              size: 40.0,
+                            ),
                           ),
-                          child: Icon(
-                            Icons.filter_list_rounded,
-                            color: Colors.white,
-                            size: 40.0,
-                          ),
-                        ),
+                        ),//icon for drawing buttom modal
                       ),
                       ReuseableText(
                         textName: 'Good Morning',
@@ -144,7 +156,6 @@ class _MyMainState extends State<MyMain> {
             ),
           ],
         ),
-        //TODO: also do reduce the bottom navigation size and learn how to navigate some part of the screen, just like navigating without moving the actual buttom nav bar.
         bottomNavigationBar: Container(
           height: 68.5,
           width: double.infinity,

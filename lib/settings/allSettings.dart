@@ -4,7 +4,7 @@ import 'refactoredWidgets.dart';
 import 'profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'contactUs.dart';
-import 'package:untitled1/dashboard/main.dart';
+import 'package:untitled1/main.dart';
 
 class AllSettings extends StatelessWidget {
 
