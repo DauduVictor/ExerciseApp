@@ -147,9 +147,6 @@ class MyHome extends StatelessWidget {
             ),
           ),
           SizedBox(height: 15.0),
-          Text(
-            'this is me'
-          ),
         ],
       ),
     );
