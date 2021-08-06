@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dashboard/bottomNavigationColor.dart';
 import 'package:untitled1/settings/allSettings.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:untitled1/dashboard/reuseable_widgets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 enum myColor{
@@ -63,10 +64,10 @@ class _MyMainState extends State<MyMain> {
                         child: GestureDetector(
                           onTap: (){
                             showModalBottomSheet(
-                                context: context,
-                                builder: (context){
-                                  return Container();
-                                }
+                              context: context,
+                              builder: (context){
+                                  return ModalBottomSheet();
+                                },
                             );
                           },
                           child: Container(
@@ -74,7 +75,7 @@ class _MyMainState extends State<MyMain> {
                             height: 50.0,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.deepOrangeAccent.withOpacity(0.2),
+                              color: Colors.deepOrangeAccent.withOpacity(0.41),
                             ),
                             child: Icon(
                               Icons.filter_list_rounded,
@@ -84,10 +85,10 @@ class _MyMainState extends State<MyMain> {
                           ),
                         ),//icon for drawing buttom modal
                       ),
-                      ReuseableText(
+                      ReusableText(
                         textName: 'Good Morning',
                       ),
-                      ReuseableText(
+                      ReusableText(
                         textName: 'Daudu',
                       ),
                       Container(
@@ -123,11 +124,11 @@ class _MyMainState extends State<MyMain> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              ReuseableCard(
+                              ReusableCard(
                                 cardName: 'Diet Recommendation',
                                 image: 'images/Eating healthy food-rafiki.png',
                               ),
-                              ReuseableCard(
+                              ReusableCard(
                                 cardName: 'kagel Exercises',
                                 image: 'images/Workout-amico.png',
                               ),
@@ -137,11 +138,11 @@ class _MyMainState extends State<MyMain> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              ReuseableCard(
+                              ReusableCard(
                                 cardName: 'Meditation',
                                 image: 'images/Meditation.gif',
                               ),
-                              ReuseableCard(
+                              ReusableCard(
                                 cardName: 'Yoga',
                                 image: 'images/Healthy habit.gif',
                               ),
@@ -175,7 +176,7 @@ class _MyMainState extends State<MyMain> {
                     touchedIconSize =  myColor.today;
                   });
                 },
-                child: ReuseableButtomIcon(
+                child: ReusableBottomIcon(
                   iconName: IconlyBold.calendar,
                   name: 'Today',
                   color: touchedIcon == myColor.today? kActiveColor : kInActiveColor,
@@ -189,7 +190,7 @@ class _MyMainState extends State<MyMain> {
                     touchedIconSize = myColor.exercise;
                   });
                 },
-                child: ReuseableButtomIcon(
+                child: ReusableBottomIcon(
                   iconName: Icons.fitness_center_rounded,
                   name: 'All Exercises',
                   color: touchedIcon == myColor.exercise ? kActiveColor : kInActiveColor,
@@ -201,10 +202,10 @@ class _MyMainState extends State<MyMain> {
                   setState(() {
                     touchedIcon = myColor.settings;
                     touchedIconSize =  myColor.settings;
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => AllSettings()));
+                    Navigator.push(context, PageTransition(type:PageTransitionType.rightToLeftWithFade, child:  AllSettings()));
                   });
                 },
-                child: ReuseableButtomIcon(
+                child: ReusableBottomIcon(
                   iconName: IconlyBold.setting,
                   name: 'Settings',
                   color: touchedIcon == myColor.settings?kActiveColor:kInActiveColor ,
@@ -214,107 +215,6 @@ class _MyMainState extends State<MyMain> {
             ],
           ),
         )
-    );
-  }
-}
-
-
-class ReuseableButtomIcon extends StatelessWidget {
-  ReuseableButtomIcon({required this.name, required this.iconName, required this.color, required this.iconSize});
-  final String name;
-  final IconData iconName;
-  final Color color;
-  final double iconSize;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:10.0, vertical: 5.0),
-      child: Container(
-        width: 95.0,
-        height: 60.0,
-        color: Colors.white,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Icon(
-                iconName,
-                size: iconSize,
-                color: color,
-              ),
-              Text(
-                name,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: color,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ReuseableCard extends StatelessWidget {
-  ReuseableCard({required this.cardName, required this.image});
-  final String cardName;
-  final String image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(11.0),
-      ),
-      child: Container(
-        width: 150.0,
-        height: 184.0,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              width: 140.0,
-              height: 140.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(image),
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            Text(
-              cardName,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ReuseableText extends StatelessWidget {
-  ReuseableText({required this.textName});
-
-  final String textName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      textName,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 38,
-        fontWeight: FontWeight.w700,
-        letterSpacing: 0.8,
-      ),
     );
   }
 }

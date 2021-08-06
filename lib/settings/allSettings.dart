@@ -4,8 +4,8 @@ import 'refactoredWidgets.dart';
 import 'profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'contactUs.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/main.dart';
-
 class AllSettings extends StatelessWidget {
 
   @override
@@ -33,7 +33,7 @@ class MyHome extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(context, PageTransition(type:PageTransitionType.leftToRightWithFade, child:  MyApp()));
             },
             child: Icon(
               Icons.arrow_back_ios_outlined,
