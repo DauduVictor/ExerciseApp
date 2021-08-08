@@ -53,8 +53,8 @@ class ReuseableField extends StatelessWidget {
         Text(
           fieldTitle,
           style: TextStyle(
-            color: Color(0xFFD9DADF),
-            fontSize: 14,
+            color: Colors.black,
+            fontSize: 15.8,
           ),
         ),
         SizedBox(width: 73,),

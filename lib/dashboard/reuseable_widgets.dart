@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:untitled1/settings/contactUs.dart';
 class ModalBottomSheet extends StatelessWidget {
 
   @override
@@ -7,7 +9,7 @@ class ModalBottomSheet extends StatelessWidget {
     return LayoutBuilder(
         builder: (
             context, constraints) => Container(
-                height: constraints.maxHeight*0.51,
+                height: constraints.maxHeight*0.654,
                 color: Colors.deepOrangeAccent.withOpacity(0.1),
                 child: Column(
                   children: [
@@ -42,6 +44,17 @@ class ModalBottomSheet extends StatelessWidget {
                             child: ReusableModalListTile(
                               icon: IconlyBold.graph,
                               titleText: 'Reach out to a trainer',
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context, PageTransition(
+                                  type:PageTransitionType.rightToLeftWithFade, child:  ContactUs()));
+                            },
+                            child: ReusableModalListTile(
+                              icon: IconlyBold.swap,
+                              titleText: 'Report a problem',
                             ),
                           ),
                           TextButton(
