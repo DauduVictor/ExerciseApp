@@ -4,6 +4,7 @@ import 'package:untitled1/settings/allSettings.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:untitled1/dashboard/reuseable_widgets.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:untitled1/dashboard/calender.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 enum myColor{
   today, exercise, settings,
@@ -174,6 +175,7 @@ class _MyMainState extends State<MyMain> {
                   setState((){
                     touchedIcon = myColor.today;
                     touchedIconSize =  myColor.today;
+                    Navigator.push(context, PageTransition(type:PageTransitionType.leftToRightWithFade, child:  Calender()));
                   });
                 },
                 child: ReusableBottomIcon(
