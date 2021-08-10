@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/settings/contactUs.dart';
+import 'package:flutter/services.dart';
 
 class ModalBottomSheet extends StatelessWidget {
 
@@ -45,7 +46,7 @@ class ModalBottomSheet extends StatelessWidget {
                                 titleText: 'Become a trainer',
                               ),
                             ),
-                          ),
+                          ),//become a trainer
                           Container(
                             height: constraints.maxHeight*0.137,
                             width: constraints.maxWidth,
@@ -61,7 +62,7 @@ class ModalBottomSheet extends StatelessWidget {
                                 titleText: 'Reach out to a trainer',
                               ),
                             ),
-                          ),
+                          ),//reach out to a trainer
                           Container(
                             height: constraints.maxHeight*0.137,
                             width: constraints.maxWidth,
@@ -81,12 +82,40 @@ class ModalBottomSheet extends StatelessWidget {
                                 titleText: 'Report a problem',
                               ),
                             ),
-                          ),
+                          ),//report a problem
                           Container(
                             height: constraints.maxHeight*0.137,
                             width: constraints.maxWidth,
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text('Do you want to exit this application?',),
+                                    content: Row(
+                                      children: [
+                                        Text('Click '),
+                                        Text('cancel', style: TextStyle(fontWeight: FontWeight.bold),),
+                                        Text(' to stay...'),
+                                      ],
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: (){
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: (){
+                                          SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                                        },
+                                        child: Text('Leave'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
                               style: ButtonStyle(
                                 padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                                   EdgeInsets.all(0.0),
@@ -97,7 +126,7 @@ class ModalBottomSheet extends StatelessWidget {
                                 titleText: 'Log Out',
                               ),
                             ),
-                          ),
+                          ),//log out
                         ],
                       ),
                     ),

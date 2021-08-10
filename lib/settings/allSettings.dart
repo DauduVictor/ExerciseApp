@@ -7,6 +7,7 @@ import 'contactUs.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/main.dart';
 import 'package:untitled1/settings/language.dart';
+import 'package:untitled1/init_screen/login.dart';
 
 class AllSettings extends StatelessWidget {
 
@@ -140,7 +141,7 @@ class _MyHomeState extends State<MyHome> {
                   iconData: IconlyBold.notification,
                   boxColor: Color(0xFFE5F7FF),
                   iconColor: Color(0xFF00A2EE),
-                  page: ContactUs(),
+                  page: Login(),
                   titleWidget: ReuseableBoxArrow(),
                 ),//notification
                 ReuseableSettingsField(

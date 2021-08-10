@@ -114,77 +114,25 @@ class _LanguageState extends State<Language> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(22.3),
                           border: Border.all(
-                            width: 0.64,
-                            color: Colors.grey.withOpacity(0.1,),
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
                           ),
                         ),
                         child: TextButton(
                           onPressed: () {
                             setState(() {
-
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
                             });
                           },
                           style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                               EdgeInsets.all(0.0),
                             ),
-                          ),
-                          child: Row(
-                            children: [
-
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: constraints.maxHeight*0.10,
-                        width: double.infinity,
-                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22.3),
-                          border: Border.all(
-                            width: 0.64,
-                            color: Colors.grey.withOpacity(0.1,),
-                          ),
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            setState(() {
-
-                            });
-                          },
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                              EdgeInsets.all(0.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: constraints.maxHeight*0.10,
-                        width: double.infinity,
-                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22.3),
-                          border: Border.all(
-                            width: 0.64,
-                            color: Colors.grey.withOpacity(0.1,),
-                          ),
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            setState(() {
-
-                            });
-                          },
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                              EdgeInsets.all(0.0),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
                             ),
                           ),
                           child: Row(

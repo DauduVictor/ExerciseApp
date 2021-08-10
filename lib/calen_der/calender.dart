@@ -20,7 +20,7 @@ class _CalenderState extends State<Calender> {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: constraints.maxWidth*0.0423, bottom:constraints.maxHeight*0.01, top:constraints.maxHeight*0.01,),
+                  margin: EdgeInsets.only(left: constraints.maxWidth*0.037, bottom:constraints.maxHeight*0.01, top:constraints.maxHeight*0.01,),
                   child: Row(
                     children: [
                       GestureDetector(
@@ -28,8 +28,8 @@ class _CalenderState extends State<Calender> {
                           Navigator.push(context, PageTransition(type:PageTransitionType.rightToLeftWithFade, child:  MyApp()));
                         },
                         child: Container(
-                          width: constraints.maxWidth*0.21,
-                          height: constraints.maxHeight*0.17,
+                          width: constraints.maxWidth*0.19,
+                          height: constraints.maxHeight*0.15,
                           margin: EdgeInsets.only(right: constraints.maxWidth*0.11,),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -38,7 +38,7 @@ class _CalenderState extends State<Calender> {
                           child: Icon(
                             IconlyBold.arrowLeft,
                             color: Colors.black,
-                            size: 31.8,
+                            size: 30.7,
                           ),
                         ),
                       ),//back icon
