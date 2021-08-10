@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'contactUs.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/main.dart';
+import 'package:untitled1/settings/language.dart';
+
 class AllSettings extends StatelessWidget {
 
   @override
@@ -130,7 +132,7 @@ class _MyHomeState extends State<MyHome> {
                   iconData: Icons.language_rounded,
                   boxColor: Color(0xFFFFF0E5),
                   iconColor: Color(0xFFFF6B00),
-                  page: ContactUs(),
+                  page: Language(),
                   titleWidget: ReuseableBoxArrow(),
                 ),//language
                 ReuseableSettingsField(

@@ -10,7 +10,7 @@ class ModalBottomSheet extends StatelessWidget {
     return LayoutBuilder(
         builder: (
             context, constraints) => Container(
-                height: constraints.maxHeight*0.654,
+                height: constraints.maxHeight*0.611,
                 color: Colors.deepOrangeAccent.withOpacity(0.1),
                 child: Column(
                   children: [
@@ -30,39 +30,72 @@ class ModalBottomSheet extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextButton(
-                            style: ButtonStyle(
-
-                            ),
-                            onPressed: () {},
-                            child: ReusableModalListTile(
-                              icon: IconlyBroken.infoSquare,
-                              titleText: 'Become a trainer',
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: ReusableModalListTile(
-                              icon: IconlyBold.graph,
-                              titleText: 'Reach out to a trainer',
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context, PageTransition(
-                                  type:PageTransitionType.rightToLeftWithFade, child:  ContactUs()));
-                            },
-                            child: ReusableModalListTile(
-                              icon: IconlyBold.swap,
-                              titleText: 'Report a problem',
+                          Container(
+                            height: constraints.maxHeight*0.137,
+                            width: constraints.maxWidth,
+                            child: TextButton(
+                              onPressed: () {},
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                  EdgeInsets.all(0.0),
+                                ),
+                              ),
+                              child: ReusableModalListTile(
+                                icon: IconlyBroken.infoSquare,
+                                titleText: 'Become a trainer',
+                              ),
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            child: ReusableModalListTile(
-                              icon: IconlyBroken.logout,
-                              titleText: 'Log Out',
+                          Container(
+                            height: constraints.maxHeight*0.137,
+                            width: constraints.maxWidth,
+                            child: TextButton(
+                              onPressed: () {},
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                  EdgeInsets.all(0.0),
+                                ),
+                              ),
+                              child: ReusableModalListTile(
+                                icon: IconlyBold.graph,
+                                titleText: 'Reach out to a trainer',
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: constraints.maxHeight*0.137,
+                            width: constraints.maxWidth,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context, PageTransition(
+                                    type:PageTransitionType.rightToLeftWithFade, child:  ContactUs()));
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                  EdgeInsets.all(0.0),
+                                ),
+                              ),
+                              child: ReusableModalListTile(
+                                icon: IconlyBold.swap,
+                                titleText: 'Report a problem',
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: constraints.maxHeight*0.137,
+                            width: constraints.maxWidth,
+                            child: TextButton(
+                              onPressed: () {},
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                  EdgeInsets.all(0.0),
+                                ),
+                              ),
+                              child: ReusableModalListTile(
+                                icon: IconlyBroken.logout,
+                                titleText: 'Log Out',
+                              ),
                             ),
                           ),
                         ],

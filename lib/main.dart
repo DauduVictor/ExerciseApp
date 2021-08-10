@@ -4,7 +4,7 @@ import 'package:untitled1/settings/allSettings.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:untitled1/dashboard/reuseable_widgets.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:untitled1/dashboard/calender.dart';
+import 'package:untitled1/calen_der/calender.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 enum myColor{
   today, exercise, settings,
@@ -65,6 +65,9 @@ class _MyMainState extends State<MyMain> {
                         child: GestureDetector(
                           onTap: (){
                             showModalBottomSheet(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+                              ),
                               context: context,
                               builder: (context){
                                   return ModalBottomSheet();
