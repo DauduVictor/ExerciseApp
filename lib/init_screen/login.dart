@@ -44,22 +44,38 @@ class _LoginState extends State<Login> {
                                   'No account? ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: constraints.maxWidth*0.0445,
+                                    fontSize: constraints.maxWidth*0.042,
+                                    color: Color(0xFF68739B),
                                   ),
                                 ),
-                                Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: constraints.maxWidth*0.047,
+                                Container(
+                                  width: constraints.maxWidth*0.198,
+                                  height: constraints.maxHeight*0.036,
+                                  child: TextButton(
+                                    onPressed: () {
+
+                                    },
+                                    style: ButtonStyle(
+                                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                        EdgeInsets.all(0.0),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: constraints.maxWidth*0.049,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
                             ),//text-- no account?login
                             Container(
-                              margin: EdgeInsets.only(top: constraints.maxHeight*0.006,),
+                              margin: EdgeInsets.only(top: constraints.maxHeight*0.003,),
                               width: constraints.maxWidth*0.451,
-                              height: constraints.maxHeight*0.0027,
+                              height: constraints.maxHeight*0.0022,
                               decoration: BoxDecoration(
                                 color: Color(0xFFBEBEC3),
                                 gradient: LinearGradient(
@@ -71,7 +87,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ],
-                        ),
+                        ),//no account text
                       ],
                     ),
                   ),
@@ -123,7 +139,7 @@ class _LoginState extends State<Login> {
                     ),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal:constraints.maxHeight*0.034,),
-                          margin: EdgeInsets.only(bottom: constraints.maxHeight*0.05,),
+                          margin: EdgeInsets.only(bottom: constraints.maxHeight*0.046,),
                           width: double.infinity,
                           height: constraints.maxHeight*0.088,
                           decoration: BoxDecoration(
@@ -151,32 +167,44 @@ class _LoginState extends State<Login> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                child: Text(
-                                  'Forgot password ?',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: constraints.maxWidth*0.041,
+                                width: constraints.maxWidth*0.41,
+                                height: constraints.maxHeight*0.036,
+                                child: TextButton(
+                                  onPressed: (){
+
+                                  },
+                                  style: ButtonStyle(
+                                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                      EdgeInsets.all(0.0),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'Forgot password ?',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: constraints.maxWidth*0.041,
+                                      color: Color(0xFF68739B),
+                                    ),
                                   ),
                                 ),
                               ),
                               Container(
-                                width: constraints.maxWidth*0.18,
-                                height: constraints.maxHeight*0.08,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20.8),
-                                  border: Border.all(
-                                      width: constraints.maxWidth*0.003,
-                                  ),
-                                  // gradient: LinearGradient(
-                                  //   colors: [
-                                  //     Color(0xFFAB4148),
-                                  //     Color(0xFF189DF4),
-                                  //   ],
-                                  // )
                                 ),
-                                child: Icon(
-                                  Icons.arrow_forward_outlined,
-                                  size: constraints.maxWidth*0.10,
+                                child: Container(
+                                  width: constraints.maxWidth*0.18,
+                                  height: constraints.maxHeight*0.08,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.8),
+                                    border: Border.all(
+                                        width: constraints.maxWidth*0.003,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.arrow_forward_outlined,
+                                    size: constraints.maxWidth*0.075,
+                                  ),
                                 ),
                               ),
                             ],
