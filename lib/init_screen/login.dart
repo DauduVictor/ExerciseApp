@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:untitled1/init_screen/signup.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -53,6 +55,7 @@ class _LoginState extends State<Login> {
                                   height: constraints.maxHeight*0.036,
                                   child: TextButton(
                                     onPressed: () {
+                                      Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  SignUp()));
 
                                     },
                                     style: ButtonStyle(
@@ -201,9 +204,24 @@ class _LoginState extends State<Login> {
                                         width: constraints.maxWidth*0.003,
                                     ),
                                   ),
-                                  child: Icon(
-                                    Icons.arrow_forward_outlined,
-                                    size: constraints.maxWidth*0.075,
+                                  child: TextButton(
+                                    onPressed: () {
+                                      },
+                                    style: ButtonStyle(
+                                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                        EdgeInsets.all(0.0),
+                                      ),
+                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20.8),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Icon(
+                                      Icons.arrow_forward_outlined,
+                                      size: constraints.maxWidth*0.075,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
                               ),
