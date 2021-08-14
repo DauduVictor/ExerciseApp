@@ -5,7 +5,7 @@ import 'profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'contactUs.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:untitled1/main.dart';
+import 'package:untitled1/dashboard/main.dart';
 import 'package:untitled1/settings/language.dart';
 import 'package:untitled1/init_screen/login.dart';
 

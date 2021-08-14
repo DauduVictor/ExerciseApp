@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dashboard/bottomNavigationColor.dart';
+import 'bottomNavigationColor.dart';
 import 'package:untitled1/settings/allSettings.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:untitled1/dashboard/reuseable_widgets.dart';

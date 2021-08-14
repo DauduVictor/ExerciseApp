@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'login.dart';
+import 'split_log_sin.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class _SignUpState extends State<SignUp> {
           body: LayoutBuilder(
             builder: (context, constraints) =>
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: constraints.maxHeight*0.04, horizontal: 15.0),
+                  margin: EdgeInsets.symmetric(vertical: constraints.maxHeight*0.04, horizontal: constraints.maxWidth*0.04),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -209,7 +209,7 @@ class _SignUpState extends State<SignUp> {
                                       ),
                                       child: TextButton(
                                         onPressed: () {
-
+                                          Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  Split()));
                                         },
                                         style: ButtonStyle(
                                           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(

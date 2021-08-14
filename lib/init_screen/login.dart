@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:untitled1/init_screen/signup.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:untitled1/dashboard/main.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -20,7 +22,8 @@ class _LoginState extends State<Login> {
           body: LayoutBuilder(
             builder: (context, constraints) =>
             Container(
-              margin: EdgeInsets.symmetric(vertical: constraints.maxHeight*0.04, horizontal: 15.0),
+              margin: EdgeInsets.only(top: constraints.maxHeight*0.04, bottom: constraints.maxHeight*0.01,
+                  left: constraints.maxWidth*0.04, right: constraints.maxWidth*0.04),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -56,7 +59,6 @@ class _LoginState extends State<Login> {
                                   child: TextButton(
                                     onPressed: () {
                                       Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  SignUp()));
-
                                     },
                                     style: ButtonStyle(
                                       padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
@@ -95,7 +97,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: constraints.maxHeight*0.14),
+                    margin: EdgeInsets.only(top: constraints.maxHeight*0.14, bottom: constraints.maxHeight*0.161),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -139,7 +141,7 @@ class _LoginState extends State<Login> {
                               enabledBorder: InputBorder.none,
                             ),
                           ),
-                    ),
+                    ),//email
                         Container(
                           padding: EdgeInsets.symmetric(horizontal:constraints.maxHeight*0.034,),
                           margin: EdgeInsets.only(bottom: constraints.maxHeight*0.046,),
@@ -164,7 +166,7 @@ class _LoginState extends State<Login> {
                               enabledBorder: InputBorder.none,
                             ),
                           ),
-                        ),
+                        ),//password
                         Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -174,7 +176,6 @@ class _LoginState extends State<Login> {
                                 height: constraints.maxHeight*0.036,
                                 child: TextButton(
                                   onPressed: (){
-
                                   },
                                   style: ButtonStyle(
                                     padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
@@ -206,6 +207,7 @@ class _LoginState extends State<Login> {
                                   ),
                                   child: TextButton(
                                     onPressed: () {
+                                      Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  MyApp()));
                                       },
                                     style: ButtonStyle(
                                       padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
@@ -227,9 +229,166 @@ class _LoginState extends State<Login> {
                               ),
                             ],
                           ),
-                        ),
+                        ),//forgot password
                       ],
                     ),
+                  ),
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: constraints.maxHeight*0.017),
+                      child: Text(
+                        'or login with',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: constraints.maxWidth*0.04,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.8),
+                        ),
+                        child: Container(
+                          width: constraints.maxWidth*0.1717,
+                          height: constraints.maxHeight*0.0717,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(21.1),
+                            border: Border.all(
+                              width: constraints.maxWidth*0.003,
+                              color: Colors.purple.withOpacity(0.1),
+                            ),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                            },
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                EdgeInsets.all(0.0),
+                              ),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.8),
+                                ),
+                              ),
+                            ),
+                            child: Icon(
+                              FontAwesomeIcons.google,
+                              size: constraints.maxWidth*0.065,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.8),
+                        ),
+                        child: Container(
+                          width: constraints.maxWidth*0.1717,
+                          height: constraints.maxHeight*0.0717,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(21.1),
+                            border: Border.all(
+                              width: constraints.maxWidth*0.003,
+                              color: Colors.purple.withOpacity(0.1),
+                            ),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                            },
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                EdgeInsets.all(0.0),
+                              ),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.8),
+                                ),
+                              ),
+                            ),
+                            child: Icon(
+                              FontAwesomeIcons.linkedinIn,
+                              size: constraints.maxWidth*0.065,
+                              color: Colors.blue.shade800,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.8),
+                        ),
+                        child: Container(
+                          width: constraints.maxWidth*0.1717,
+                          height: constraints.maxHeight*0.0717,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(21.1),
+                            border: Border.all(
+                              width: constraints.maxWidth*0.003,
+                              color: Colors.purple.withOpacity(0.1),
+                            ),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                            },
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                EdgeInsets.all(0.0),
+                              ),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.8),
+                                ),
+                              ),
+                            ),
+                            child: Icon(
+                              FontAwesomeIcons.facebook,
+                              size: constraints.maxWidth*0.065,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.8),
+                        ),
+                        child: Container(
+                          width: constraints.maxWidth*0.1717,
+                          height: constraints.maxHeight*0.0717,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(21.1),
+                            border: Border.all(
+                              width: constraints.maxWidth*0.003,
+                              color: Colors.purple.withOpacity(0.1),
+                            ),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                            },
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                EdgeInsets.all(0.0),
+                              ),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.8),
+                                ),
+                              ),
+                            ),
+                            child: Icon(
+                              FontAwesomeIcons.instagram,
+                              size: constraints.maxWidth*0.065,
+                              color: Color(0xFFFD2253),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
