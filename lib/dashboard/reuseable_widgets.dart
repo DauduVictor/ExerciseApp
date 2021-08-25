@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/settings/contactUs.dart';
 import 'package:flutter/services.dart';
+import 'package:untitled1/init_screen/split_log_sin.dart';
 
 class ModalBottomSheet extends StatelessWidget {
 
@@ -51,7 +52,9 @@ class ModalBottomSheet extends StatelessWidget {
                             height: constraints.maxHeight*0.137,
                             width: constraints.maxWidth,
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, PageTransition(type:PageTransitionType.fade, child:  Split()));
+                              },
                               style: ButtonStyle(
                                 padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                                   EdgeInsets.all(0.0),

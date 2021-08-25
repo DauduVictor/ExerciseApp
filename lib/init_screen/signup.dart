@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'login.dart';
-import 'split_log_sin.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -209,7 +208,7 @@ class _SignUpState extends State<SignUp> {
                                       ),
                                       child: TextButton(
                                         onPressed: () {
-                                          Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  Split()));
+                                          Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  Login()));
                                         },
                                         style: ButtonStyle(
                                           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
