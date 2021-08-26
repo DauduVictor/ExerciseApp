@@ -54,7 +54,7 @@ class _SplitState extends State<Split> {
                             child: Text(
                               'Sign up',
                               style: TextStyle(
-                                fontSize: constraints.maxWidth*0.0507,
+                                fontSize: 20.5,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black
                               ),
@@ -91,7 +91,7 @@ class _SplitState extends State<Split> {
                             child: Text(
                               'Login',
                               style: TextStyle(
-                                fontSize: constraints.maxWidth*0.0507,
+                                fontSize: 20.5,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black,
                               ),

@@ -253,8 +253,8 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(20.8),
                         ),
                         child: Container(
-                          width: constraints.maxWidth*0.1717,
-                          height: constraints.maxHeight*0.0717,
+                          width: constraints.maxWidth*0.1415,
+                          height: constraints.maxHeight*0.0615,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(21.1),
                             border: Border.all(
@@ -277,7 +277,7 @@ class _LoginState extends State<Login> {
                             ),
                             child: Icon(
                               FontAwesomeIcons.google,
-                              size: constraints.maxWidth*0.065,
+                              size: constraints.maxWidth*0.057,
                               color: Colors.black,
                             ),
                           ),
@@ -288,8 +288,8 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(20.8),
                         ),
                         child: Container(
-                          width: constraints.maxWidth*0.1717,
-                          height: constraints.maxHeight*0.0717,
+                          width: constraints.maxWidth*0.1415,
+                          height: constraints.maxHeight*0.0615,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(21.1),
                             border: Border.all(
@@ -312,7 +312,7 @@ class _LoginState extends State<Login> {
                             ),
                             child: Icon(
                               FontAwesomeIcons.linkedinIn,
-                              size: constraints.maxWidth*0.065,
+                              size: constraints.maxWidth*0.057,
                               color: Colors.blue.shade800,
                             ),
                           ),
@@ -323,8 +323,8 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(20.8),
                         ),
                         child: Container(
-                          width: constraints.maxWidth*0.1717,
-                          height: constraints.maxHeight*0.0717,
+                          width: constraints.maxWidth*0.1415,
+                          height: constraints.maxHeight*0.0615,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(21.1),
                             border: Border.all(
@@ -347,7 +347,7 @@ class _LoginState extends State<Login> {
                             ),
                             child: Icon(
                               FontAwesomeIcons.facebook,
-                              size: constraints.maxWidth*0.065,
+                              size: constraints.maxWidth*0.057,
                               color: Colors.blue,
                             ),
                           ),
@@ -358,8 +358,8 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(20.8),
                         ),
                         child: Container(
-                          width: constraints.maxWidth*0.1717,
-                          height: constraints.maxHeight*0.0717,
+                          width: constraints.maxWidth*0.1415,
+                          height: constraints.maxHeight*0.0615,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(21.1),
                             border: Border.all(
@@ -382,7 +382,7 @@ class _LoginState extends State<Login> {
                             ),
                             child: Icon(
                               FontAwesomeIcons.instagram,
-                              size: constraints.maxWidth*0.065,
+                              size: constraints.maxWidth*0.057,
                               color: Color(0xFFFD2253),
                             ),
                           ),

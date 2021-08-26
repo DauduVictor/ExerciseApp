@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 class Language extends StatefulWidget {
   @override
   _LanguageState createState() => _LanguageState();
@@ -21,12 +20,12 @@ class _LanguageState extends State<Language> {
       home: SafeArea(
         child: Scaffold(
           body: LayoutBuilder(builder: (context, constraints) => Container(
-            margin: EdgeInsets.all(18.0),
+            margin: EdgeInsets.only(top: constraints.maxHeight*0.022, left: constraints.maxWidth*0.024, right: constraints.maxWidth*0.024,),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: constraints.maxHeight*0.015),
+                  margin: EdgeInsets.only(top: constraints.maxHeight*0.015, left: constraints.maxWidth*0.017,),
                   child: GestureDetector(
                     onTap: () {
                       Navigator.pop(Context);
@@ -47,7 +46,7 @@ class _LanguageState extends State<Language> {
                         'Choose your language',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: constraints.maxWidth*0.059,
+                          fontSize: 23.1,
                           fontWeight: FontWeight.w500,
                         )
                       ),
@@ -62,14 +61,13 @@ class _LanguageState extends State<Language> {
                         child: Icon(
                           Icons.check_rounded,
                           color: Colors.black,
-                          size: constraints.maxWidth*0.114,
+                          size: 30,
                         ),
                       ),
                     ],
                   ),
                 ),//choose your language text and mark done
-                Container(
-                  height: constraints.maxHeight*0.8018,
+                Expanded(
                   child: ListView(
                     children: [
                       Container(
@@ -81,6 +79,391 @@ class _LanguageState extends State<Language> {
                           border: Border.all(
                             width: presentWidth ,
                             color: presentColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
+                          ),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              presentWidth = enabledTappedWidth;
+                              print('this button was pressed ');
+                            });
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: constraints.maxHeight*0.10,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: constraints.maxHeight*0.01,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22.3),
+                          border: Border.all(
+                            width: enabledTappedWidth ,
+                            color: enabledTappedColor,
                           ),
                         ),
                         child: TextButton(
