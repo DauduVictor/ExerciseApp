@@ -3,7 +3,6 @@ import 'package:page_transition/page_transition.dart';
 import 'login.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
 
   @override
   _SignUpState createState() => _SignUpState();

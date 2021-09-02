@@ -3,8 +3,11 @@ import 'signup.dart';
 import 'login.dart';
 import 'package:page_transition/page_transition.dart';
 
+void main() {
+  runApp(Split());
+}
+
 class Split extends StatefulWidget {
-  const Split({Key? key}) : super(key: key);
 
   @override
   _SplitState createState() => _SplitState();
@@ -14,6 +17,11 @@ class _SplitState extends State<Split> {
   @override
   Widget build(BuildContext Context) {
     return MaterialApp(
+      routes: {
+        '/split_log_sin.dart':(context) => Split(),
+        '/login' : (context) => Login(),
+        '/logout' : (context) => SignUp(),
+      },
       theme: ThemeData(fontFamily: 'Poppins'),
       home: SafeArea(
         child: Scaffold(
@@ -38,7 +46,7 @@ class _SplitState extends State<Split> {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  SignUp()));
+                            Navigator.push(context, PageTransition(type:PageTransitionType.fade, child:  SignUp()));
                           },
                           style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
@@ -75,7 +83,7 @@ class _SplitState extends State<Split> {
                         ),
                         child: TextButton(
                           onPressed: (){
-                            Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  Login()));
+                            Navigator.push(context, PageTransition(type:PageTransitionType.fade, child:  Login()));
                           },
                           style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(

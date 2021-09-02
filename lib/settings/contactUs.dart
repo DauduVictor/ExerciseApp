@@ -2,21 +2,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'refactoredWidgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class ContactUs extends StatelessWidget {
+class ContactUs extends StatefulWidget {
 
   @override
-  Widget build(BuildContext context) {
+  _ContactUsState createState() => _ContactUsState();
+}
+
+class _ContactUsState extends State<ContactUs> {
+
+  _launchURL()async{
+    const url = 'https://instagram.com';
+    if(await canLaunch(url)){
+      await launch(url);
+    }
+    else{
+      throw "Check your internet connectivity and try again";
+    }
+  }
+
+  @override
+  Widget build(BuildContext Context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Poppins',),
       home: SafeArea(
         child: Scaffold(
-          body: Stack(
+          body: LayoutBuilder(builder: (context, constraints) => Stack(
             children: [
               Container(
                 margin: EdgeInsets.only(bottom: 8.0),
                 width: double.infinity,
-                height: 390.0,
+                height: constraints.maxHeight*0.487,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/Mention.gif'),
@@ -25,15 +43,15 @@ class ContactUs extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 24.0,
+                top: 0.0,
                 left: 20.0,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.pop(Context);
                   },
                   child: Container(
-                    width: 54.0,
-                    height: 54.0,
+                    width: constraints.maxWidth*0.138,
+                    height: constraints.maxHeight*0.138,
                     child: Icon(
                       IconlyLight.arrowLeft2,
                       color: Colors.white,
@@ -53,7 +71,7 @@ class ContactUs extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 44.0),
+                margin: EdgeInsets.only(bottom: constraints.maxHeight*0.037),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,51 +88,64 @@ class ContactUs extends StatelessWidget {
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      margin: EdgeInsets.symmetric(vertical: 37.9,),
+                      margin: EdgeInsets.symmetric(vertical: 39.9,),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextButton(
-                            onPressed: () {},
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _launchURL();
+                              });
+                            },
                             child: ReuseableRoundedIcon(
-                                boxColor: Color(0xFFFFF0E5),
-                                boxIcon: Icons.language_rounded,
-                                iconColor: Color(0xFFFF6B00),
-                                width: 60.0,
+                                boxColor: Colors.grey.withOpacity(0.067,),
+                                boxIcon: FontAwesomeIcons.google,
+                                iconColor: Colors.black,
+                                width: 60.0,//constraints.maxWidth*0.164
                                 height: 60.0,
                                 size: 30.0
                             ),
-                          ),//github
-                          TextButton(
-                            onPressed: (){},
+                          ),//mail
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                _launchURL();
+                              });
+                            },
                             child: ReuseableRoundedIcon(
                                 boxColor: Color(0xFFE5F7FF),
-                                boxIcon: Icons.facebook_rounded,
+                                boxIcon: FontAwesomeIcons.twitter,
                                 iconColor: Color(0xFF00A2EE),
                                 width: 60.0,
                                 height: 60.0,
                                 size: 30.0
                             ),
                           ),//twitter
-                          TextButton(
-                            onPressed: () {
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _launchURL();
+                              });
                             },
-                            style: ButtonStyle(
-                            ),
                             child: ReuseableRoundedIcon(
                                 boxColor: Color(0xFFECEAFF),
-                                boxIcon: Icons.facebook_rounded,
+                                boxIcon: FontAwesomeIcons.linkedinIn,
                                 iconColor: Color(0xFF551EFF),
                                 width: 60.0,
                                 height: 60.0,
                                 size: 30.0
                             ),
-                          ),//linkedln
-                          TextButton(
-                            onPressed: (){},
+                          ),//linked ln
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                _launchURL();
+                              });
+                            },
                             child: ReuseableRoundedIcon(
                                 boxColor: Color(0xFFFFE7ED),
-                                boxIcon: Icons.language_rounded,
+                                boxIcon: FontAwesomeIcons.instagram,
                                 iconColor: Color(0xFFFD2253),
                                 width: 60.0,
                                 height: 60.0,
@@ -140,6 +171,7 @@ class ContactUs extends StatelessWidget {
               ),
             ],
           ),
+          ),
         ),
       ),
     );
@@ -154,10 +186,12 @@ class ReuseableTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 4.0),
-      padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
+    return LayoutBuilder(builder: (context, constraints) => Container(
+      color: Colors.blue,
+      margin: EdgeInsets.only(bottom: 7.0),
+      padding: EdgeInsets.only(left: 18.0, right: 18.0, bottom: 10.0),
       height: 101.0,
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,6 +233,6 @@ class ReuseableTextField extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ),);
   }
 }

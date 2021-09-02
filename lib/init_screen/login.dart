@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled1/dashboard/main.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();

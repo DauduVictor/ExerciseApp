@@ -5,13 +5,11 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:untitled1/dashboard/reuseable_widgets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/calen_der/calender.dart';
+import 'package:untitled1/init_screen/split_log_sin.dart';
+import 'package:untitled1/settings/contactUs.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 enum myColor{
   today, exercise, settings,
-}
-
-void main() {
-  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -23,8 +21,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext Context) {
     return  MaterialApp(
+      routes: {
+        '/split_log_sin.dart':(context) => Split(),
+      },
       theme: ThemeData(fontFamily: 'Poppins'),
       home: SafeArea(
         child: MyMain(),
@@ -144,11 +145,11 @@ class _MyMainState extends State<MyMain> {
                             children: [
                               ReusableCard(
                                 cardName: 'Meditation',
-                                image: 'images/Meditation.gif',
+                                image: 'images/Meditation-rafiki.png',
                               ),
                               ReusableCard(
                                 cardName: 'Yoga',
-                                image: 'images/Healthy habit.gif',
+                                image: 'images/Yoga with face masks-amico.png',
                               ),
                             ],
                           ),
@@ -221,5 +222,141 @@ class _MyMainState extends State<MyMain> {
           ),
         )
     );
+  }
+}
+class ModalBottomSheet extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext Context) {
+    return LayoutBuilder(
+        builder: (context, constraints) => Container(
+          height: constraints.maxHeight*0.611,
+          color: Colors.deepOrangeAccent.withOpacity(0.1),
+          child: Column(
+            children: [
+              Center(
+                child: Container(
+                  margin: EdgeInsets.only(top: 3.0),
+                  height: constraints.maxHeight*0.013,
+                  width: constraints.maxWidth*0.18,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              Container(
+                height: constraints.maxHeight*0.575,
+                child: Padding(
+                  padding:  EdgeInsets.only(top: constraints.maxHeight*0.015,),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        //height: constraints.maxHeight*0.137,
+                        width: constraints.maxWidth,
+                        child: TextButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                          ),
+                          child: ReusableModalListTile(
+                            icon: IconlyBroken.infoSquare,
+                            titleText: 'Become a trainer',
+                          ),
+                        ),
+                      ),//become a trainer
+                      Container(
+                        //height: constraints.maxHeight*0.137,
+                        width: constraints.maxWidth,
+                        child: TextButton(
+                          onPressed: () {
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                          ),
+                          child: ReusableModalListTile(
+                            icon: IconlyBold.graph,
+                            titleText: 'Reach out to a trainer',
+                          ),
+                        ),
+                      ),//reach out to a trainer
+                      Container(
+                        //height: constraints.maxHeight*0.137,
+                        width: constraints.maxWidth,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context, PageTransition(
+                                type:PageTransitionType.rightToLeftWithFade, child:  ContactUs()));
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                          ),
+                          child: ReusableModalListTile(
+                            icon: IconlyBold.swap,
+                            titleText: 'Report a problem',
+                          ),
+                        ),
+                      ),//report a problem
+                      Container(
+                        //height: constraints.maxHeight*0.137,
+                        width: constraints.maxWidth,
+                        child: TextButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Do you want to logout of your account?',),
+                                content: Row(
+                                  children: [
+                                    Text('Click '),
+                                    Text('cancel', style: TextStyle(fontWeight: FontWeight.bold),),
+                                    Text(' to stay...'),
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: (){
+                                      //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                                      Navigator.pop(context);
+                                      Navigator.of(Context).pushNamedAndRemoveUntil('/split_log_sin.dart', (Route<dynamic>route) => false);
+                                    },
+                                    child: Text('Logout'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              EdgeInsets.all(0.0),
+                            ),
+                          ),
+                          child: ReusableModalListTile(
+                            icon: IconlyBroken.logout,
+                            titleText: 'Log Out',
+                          ),
+                        ),
+                      ),//log out
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

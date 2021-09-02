@@ -45,7 +45,7 @@ class _CalenderState extends State<Calender> {
                       Text(
                         'Today',
                         style: TextStyle(
-                          fontSize: constraints.maxHeight*0.044,
+                          fontSize: 28,
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                         ),
@@ -63,7 +63,7 @@ class _CalenderState extends State<Calender> {
                             'January 2021',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: constraints.maxHeight*0.029,
+                              fontSize: 23,
                               fontWeight: FontWeight.w600,
                             ),
                           ),//month and year
@@ -82,7 +82,7 @@ class _CalenderState extends State<Calender> {
                               child: Icon(
                                 IconlyLight.arrowUp2,
                                 color: Colors.black,
-                                size: constraints.maxHeight*0.037,
+                                size: 32,
                               ),
                             ),
                           ),//up icon
@@ -100,7 +100,7 @@ class _CalenderState extends State<Calender> {
                               child: Icon(
                                 IconlyLight.arrowDown2,
                                 color: Colors.black,
-                                size: constraints.maxHeight*0.037,
+                                size: 32,
                               ),
                             ),
                           ),//down icon
@@ -109,7 +109,7 @@ class _CalenderState extends State<Calender> {
                       Icon(
                         IconlyLight.calendar,
                         color: Colors.black,
-                        size: constraints.maxHeight*0.037,
+                        size: 32
                       ),
                     ],
                   ),
