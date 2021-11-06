@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:untitled1/screens/dashboard/dashboard.dart';
+import 'language.dart';
 import 'refactoredWidgets.dart';
 import 'profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'contactUs.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:untitled1/dashboard/main.dart';
-import 'package:untitled1/settings/language.dart';
 import 'notification.dart';
-import 'package:untitled1/init_screen/login.dart';
 
 class AllSettings extends StatelessWidget {
 
@@ -31,7 +30,9 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+
   bool val = false;
+
   onPressedSwitch(value){
     setState(() {
       val = value;
@@ -47,7 +48,7 @@ class _MyHomeState extends State<MyHome> {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context, PageTransition(type:PageTransitionType.leftToRightWithFade, child:  MyApp()));
+              Navigator.push(context, PageTransition(type:PageTransitionType.leftToRightWithFade, child:  Text(Dashboard.id)));
             },
             child: Icon(
               Icons.arrow_back_ios_outlined,

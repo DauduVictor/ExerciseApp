@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'refactoredWidgets.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+
 class Profile extends StatelessWidget {
 
   @override

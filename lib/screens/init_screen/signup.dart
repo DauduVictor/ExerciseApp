@@ -4,13 +4,15 @@ import 'login.dart';
 
 class SignUp extends StatefulWidget {
 
+  static const String id = 'signUp';
+
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
   @override
-  Widget build(BuildContext Context) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Poppins'),
       home: SafeArea(
@@ -28,7 +30,7 @@ class _SignUpState extends State<SignUp> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pop(Context);
+                                Navigator.pop(context);
                               },
                               child: Icon(
                                 Icons.arrow_back_ios_outlined,
@@ -53,7 +55,7 @@ class _SignUpState extends State<SignUp> {
                                       height: constraints.maxHeight*0.036,
                                       child: TextButton(
                                         onPressed: () {
-                                          Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  Login()));
+                                          Navigator.push(context, PageTransition(type:PageTransitionType.fade, child:  Login()));
 
                                         },
                                         style: ButtonStyle(
@@ -207,7 +209,7 @@ class _SignUpState extends State<SignUp> {
                                       ),
                                       child: TextButton(
                                         onPressed: () {
-                                          Navigator.push(Context, PageTransition(type:PageTransitionType.fade, child:  Login()));
+                                          Navigator.push(context, PageTransition(type:PageTransitionType.fade, child:  Login()));
                                         },
                                         style: ButtonStyle(
                                           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
