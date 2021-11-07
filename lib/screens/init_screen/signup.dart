@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/components/circle-indicator.dart';
 import 'package:untitled1/utils/constant.dart';
@@ -9,6 +9,7 @@ import 'login.dart';
 class SignUp extends StatefulWidget {
 
   static const String id = 'signUp';
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   _SignUpState createState() => _SignUpState();
@@ -23,7 +24,11 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
+  /// Variable to hold the bool value of the [CircleIndicator()]
   bool _showSpinner = false;
+
+  /// Variable to hold the bool value of the obscure text in the form field
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +45,7 @@ class _SignUpState extends State<SignUp> {
               builder: (context, constraints) =>
                   SingleChildScrollView(
                     child: Container(
+                      height: constraints.maxHeight,
                       padding: EdgeInsets.symmetric(vertical: 30, horizontal: 15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +82,7 @@ class _SignUpState extends State<SignUp> {
                                             height: 32,
                                             child: TextButton(
                                               onPressed: () {
-                                                Navigator.push(
+                                                Navigator.pushReplacement(
                                                   context,
                                                   PageTransition(type:PageTransitionType.fade, child: Login())
                                                 );
@@ -134,7 +140,7 @@ class _SignUpState extends State<SignUp> {
                                     fontWeight: FontWeight.w500,
                                     fontSize: 19,
                                   ),
-                                ),//glad to see...
+                                ),
                                 const SizedBox(height: 17),
                                 _buildForm(),
                                 Row(
@@ -153,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                                         ),
                                         child: TextButton(
                                           onPressed: () {
-                                            if(!_showSpinner){
+                                            if (!_showSpinner){
                                               if(_formKey.currentState!.validate()){
                                                 _signUp();
                                               }
@@ -226,7 +232,7 @@ class _SignUpState extends State<SignUp> {
             child: TextFormField(
               style: kFormTextStyle,
               decoration: kFormInputDecoration.copyWith(
-                  labelText: 'E-mail'
+                  labelText: 'Email'
               ),
               controller: _eMailController,
               textInputAction: TextInputAction.next,
@@ -259,19 +265,33 @@ class _SignUpState extends State<SignUp> {
           const SizedBox(height: 15),
           ///Confirm password
           Container(
+            height: 74,
             width: double.infinity,
             decoration: kFormContainerDecoration,
             child: TextFormField(
               style: kFormTextStyle,
               decoration: kFormInputDecoration.copyWith(
-                  labelText: 'Confirm password'
+                labelText: 'Confirm password',
+                contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
+                suffix: IconButton(
+                  icon: Icon(_obscureText ? IconlyBold.show : IconlyBold.hide),
+                  color: Color(0xFFAEAEB2),
+                  iconSize: 27,
+                  splashRadius: 5.0,
+                  onPressed: () {
+                    setState(() {
+                    _obscureText = !_obscureText;
+                    });
+                  },
+                ),
               ),
               controller: _confirmPasswordController,
+              obscureText: _obscureText,
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.text,
               validator: (value) {
-                if (value!.isEmpty) return 'This field is required';
-                else if (_passwordController.text != _confirmPasswordController.text) return 'Please confirm your password';
+                if (value!.isEmpty) return'This field is required';
+                else if (_passwordController.text != _confirmPasswordController.text) return'Confirm your pin';
                 return null;
               },
             ),
@@ -282,6 +302,7 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
+  /// Function to call api[Sign up]
   void _signUp() {
     if(!mounted) return;
     setState(() {

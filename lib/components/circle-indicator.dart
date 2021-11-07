@@ -8,6 +8,7 @@ class CircleProgressIndicator extends StatelessWidget {
     return Platform.isIOS
         ? CupertinoActivityIndicator(radius: 16)
         : CircularProgressIndicator(
+      strokeWidth: 3.2,
       valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
     );
   }
