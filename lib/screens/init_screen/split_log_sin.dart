@@ -134,7 +134,7 @@ class _SplitState extends State<Split> with TickerProviderStateMixin{
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         horizontal: 26,
                         vertical: 12,
                     ),
@@ -153,19 +153,15 @@ class _SplitState extends State<Split> with TickerProviderStateMixin{
                           ),
                           child: TextButton(
                             onPressed: () {
-                              Navigator.push(context, PageTransition(type:PageTransitionType.fade, child:  SignUp()));
+                              Navigator.push(
+                                  context,
+                                  PageTransition(type:PageTransitionType.fade, child:  SignUp()));
                             },
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                EdgeInsets.all(0.0),
-                              ),
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.4),
-                                ),
-                              ),
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.all(0.0),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.4),),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Sign up',
                                 style: TextStyle(
@@ -177,7 +173,7 @@ class _SplitState extends State<Split> with TickerProviderStateMixin{
                             ),
                           ),
                         ),
-                        SizedBox(height: constraints.maxHeight*0.0178,),
+                        const SizedBox(height: 15.0),
                         Container(
                           width: constraints.maxWidth,
                           height: constraints.maxHeight*0.085,
@@ -192,17 +188,11 @@ class _SplitState extends State<Split> with TickerProviderStateMixin{
                             onPressed: (){
                               Navigator.push(context, PageTransition(type:PageTransitionType.fade, child:  Login()));
                             },
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                EdgeInsets.all(0.0),
-                              ),
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.4),
-                                ),
-                              ),
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.all(0.0),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.4)),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Login',
                                 style: TextStyle(
