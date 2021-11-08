@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 final kFormContainerDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(8.2),
-  color: const Color(0xFFF0F0F0),
 );
 
 final kFormTextStyle = const TextStyle(
@@ -15,6 +14,8 @@ final kFormInputDecoration = InputDecoration(
     color: Color(0xFFAEAEB2),
     fontSize: 16,
   ),
+  filled: true,
+  fillColor: const Color(0xFFF0F0F0),
   focusColor: Colors.blueAccent,
   contentPadding: EdgeInsets.fromLTRB(21.0, 14.0, 21.0, 14.0),
   focusedBorder: OutlineInputBorder(

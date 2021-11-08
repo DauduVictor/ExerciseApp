@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/components/circle-indicator.dart';
@@ -240,6 +241,9 @@ class _SignUpState extends State<SignUp> {
               controller: _eMailController,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")),
+              ],
               validator: (value) {
                 if (value!.isEmpty) return 'This field is required';
                 return null;
@@ -275,6 +279,7 @@ class _SignUpState extends State<SignUp> {
               keyboardType: TextInputType.text,
               validator: (value) {
                 if (value!.isEmpty) return'This field is required';
+                else if (value.length < 5) return'Password length too short';
                 return null;
               },
             ),
