@@ -27,8 +27,11 @@ class _SignUpState extends State<SignUp> {
   /// Variable to hold the bool value of the [CircleIndicator()]
   bool _showSpinner = false;
 
-  /// Variable to hold the bool value of the obscure text in the form field
-  bool _obscureText = true;
+  /// Variable to hold the bool value of [Password] obscure text in the form field
+  bool _obscurePassword = true;
+
+  /// Variable to hold the bool value of [Confirm Password] obscure text in the form field
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -246,18 +249,32 @@ class _SignUpState extends State<SignUp> {
           const SizedBox(height: 15),
           ///Password
           Container(
+            height: 74,
             width: double.infinity,
             decoration: kFormContainerDecoration,
             child: TextFormField(
               style: kFormTextStyle,
               decoration: kFormInputDecoration.copyWith(
-                  labelText: 'Password'
+                labelText: 'Password',
+                contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
+                suffix: IconButton(
+                  icon: Icon(_obscurePassword ? IconlyBold.show : IconlyBold.hide),
+                  color: Color(0xFFAEAEB2),
+                  iconSize: 27,
+                  splashRadius: 5.0,
+                  onPressed: () {
+                    setState(() {
+                      _obscurePassword = !_obscurePassword;
+                    });
+                  },
+                ),
               ),
               controller: _passwordController,
+              obscureText: _obscurePassword,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               validator: (value) {
-                if (value!.isEmpty) return 'This field is required';
+                if (value!.isEmpty) return'This field is required';
                 return null;
               },
             ),
@@ -274,19 +291,19 @@ class _SignUpState extends State<SignUp> {
                 labelText: 'Confirm password',
                 contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
                 suffix: IconButton(
-                  icon: Icon(_obscureText ? IconlyBold.show : IconlyBold.hide),
+                  icon: Icon(_obscureConfirmPassword ? IconlyBold.show : IconlyBold.hide),
                   color: Color(0xFFAEAEB2),
                   iconSize: 27,
                   splashRadius: 5.0,
                   onPressed: () {
                     setState(() {
-                    _obscureText = !_obscureText;
+                    _obscureConfirmPassword = !_obscureConfirmPassword;
                     });
                   },
                 ),
               ),
               controller: _confirmPasswordController,
-              obscureText: _obscureText,
+              obscureText: _obscureConfirmPassword,
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.text,
               validator: (value) {

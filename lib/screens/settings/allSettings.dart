@@ -1,255 +1,186 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:untitled1/components/round_box_icon.dart';
+import 'package:untitled1/components/settings_arrow_nav.dart';
+import 'package:untitled1/components/settings_field.dart';
 import 'package:untitled1/screens/dashboard/dashboard.dart';
 import 'language.dart';
-import 'refactoredWidgets.dart';
 import 'profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'contactUs.dart';
 import 'package:page_transition/page_transition.dart';
 import 'notification.dart';
 
-class AllSettings extends StatelessWidget {
+class AllSettings extends StatefulWidget {
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: 'Poppins',),
-      home: SafeArea(
-        child: Scaffold(
-          body: MyHome(),
-        ),
-      ),
-    );
-  }
-}
-class MyHome extends StatefulWidget {
-
-  @override
-  _MyHomeState createState() => _MyHomeState();
+  State<AllSettings> createState() => _AllSettingsState();
 }
 
-class _MyHomeState extends State<MyHome> {
+class _AllSettingsState extends State<AllSettings> {
 
   bool val = false;
 
+  /// Function to hold the state of the dark mode toggle button
   onPressedSwitch(value){
     setState(() {
       val = value;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left:18, top: 30.0, right: 22.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, PageTransition(type:PageTransitionType.leftToRightWithFade, child:  Text(Dashboard.id)));
-            },
-            child: Icon(
-              Icons.arrow_back_ios_outlined,
-              color: Colors.black,
-              size: 35.0,
-            ),
-          ),
-          Expanded(
+    return SafeArea(
+      child: Scaffold(
+        body: LayoutBuilder(
+          builder: (context, constraints) => Container(
+            padding: const EdgeInsets.fromLTRB(18, 30.0, 22.0, 0.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  margin: EdgeInsets.only(top: 25.3,bottom: 11.0,),
-                  child: Text(
-                    'Settings',
-                    style: TextStyle(
-                      fontSize: 45.7,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),//settings text
-                Text(
-                  'Account',
-                  style: TextStyle(
-                    fontSize: 28,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(type:PageTransitionType.leftToRightWithFade, child:  Dashboard()));
+                  },
+                  child: const Icon(
+                    Icons.arrow_back_ios_outlined,
                     color: Colors.black,
-                    fontWeight: FontWeight.w500,
+                    size: 35.0,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 20.0, bottom: 20.0,),
-                  child: Row(
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: ListTile(
-                          leading: ReuseableRoundedIcon(
-                            size: 42.0,
-                            height: 65.0,
-                            width: 65.0,
-                            boxColor: Color(0xFFF5F4F7),
-                            iconColor: Color(0xFFB7BCC9),
-                            boxIcon: IconlyBold.profile,
+                      Container(
+                        margin: const EdgeInsets.only(top: 25.3, bottom: 11.0,),
+                        child: const Text(
+                          'Settings',
+                          style: TextStyle(
+                            fontSize: 42,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
                           ),
-                          title: Text(
-                            'David Clerisseau',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500
-                            ),
-                          ),
-                          subtitle: Text(
-                            'Personal Info',
-                            style: TextStyle(
-                              color: Color(0xFFB8BCC9),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 1.5),
+                        ),
+                      ),//settings text
+                      const Text(
+                        'Account',
+                        style: TextStyle(
+                          fontSize: 28,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, CupertinoPageRoute(builder: (context) => Profile()));
-                        },
-                        child: ReuseableBoxArrow(),
+                      Container(
+                        margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                        child: Row(
+                          children: [
+                            /// profile
+                            Expanded(
+                              child: ListTile(
+                                leading: ReusableRoundedIcon(
+                                  size: 42.0,
+                                  height: 65.0,
+                                  width: 65.0,
+                                  boxColor: const Color(0xFFF5F4F7),
+                                  iconColor: const Color(0xFFB7BCC9),
+                                  boxIcon: IconlyBold.profile,
+                                ),
+                                title: Text(
+                                  'Daudu Victor',
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500
+                                  ),
+                                ),
+                                subtitle: const Text(
+                                  'Personal Info',
+                                  style: TextStyle(
+                                    color: Color(0xFFB8BCC9),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                contentPadding: EdgeInsets.only(left: 1.5),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, CupertinoPageRoute(builder: (context) => Profile()));
+                              },
+                              child: ReusableBoxArrow(),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Text(
+                        'Settings',
+                        style: TextStyle(
+                          fontSize: 27,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      /// language
+                      ReusableSettingsField(
+                        fieldName: 'Language',
+                        iconData: Icons.language_rounded,
+                        boxColor: const Color(0xFFFFF0E5),
+                        iconColor: const Color(0xFFFF6B00),
+                        page: Language(),
+                        titleWidget: ReusableBoxArrow(),
+                      ),
+                      /// notification
+                      ReusableSettingsField(
+                        fieldName: 'Notification',
+                        iconData: IconlyBold.notification,
+                        boxColor: const Color(0xFFE5F7FF),
+                        iconColor: const Color(0xFF00A2EE),
+                        page: Notifications(),
+                        titleWidget: ReusableBoxArrow(),
+                      ),
+                      /// dark mode
+                      ReusableSettingsField(
+                        fieldName: 'Dark Mode',
+                        iconData: Icons.dark_mode_sharp,
+                        boxColor: const Color(0xFFECEAFF),
+                        iconColor: const Color(0xFF551EFF),
+                        page: ContactUs(),
+                        titleWidget: Switch.adaptive(
+                          value: val,
+                          onChanged: (value){
+                            onPressedSwitch(value);
+                          },
+                          activeColor: Color(0xFF551EFF),
+                          inactiveThumbColor: Colors.white54,
+                          inactiveTrackColor: Colors.black45,
+
+                        ),
+                      ),
+                      /// help
+                      ReusableSettingsField(
+                        fieldName: 'Help',
+                        iconData: Icons.support_sharp,
+                        boxColor: const Color(0xFFFFE7ED),
+                        iconColor: const Color(0xFFFD2253),
+                        page: ContactUs(),
+                        titleWidget: ReusableBoxArrow(),
                       ),
                     ],
                   ),
                 ),
-                Text(
-                  'Settings',
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                ReuseableSettingsField(
-                  fieldName: 'Language',
-                  iconData: Icons.language_rounded,
-                  boxColor: Color(0xFFFFF0E5),
-                  iconColor: Color(0xFFFF6B00),
-                  page: Language(),
-                  titleWidget: ReuseableBoxArrow(),
-                ),//language
-                ReuseableSettingsField(
-                  fieldName: 'Notification',
-                  iconData: IconlyBold.notification,
-                  boxColor: Color(0xFFE5F7FF),
-                  iconColor: Color(0xFF00A2EE),
-                  page: Notifications(),
-                  titleWidget: ReuseableBoxArrow(),
-                ),//notification
-                ReuseableSettingsField(
-                  fieldName: 'Dark Mode',
-                  iconData: Icons.dark_mode_sharp,
-                  boxColor: Color(0xFFECEAFF),
-                  iconColor: Color(0xFF551EFF),
-                  page: ContactUs(),
-                  titleWidget: Switch.adaptive(
-                    value: val,
-                    onChanged: (value){
-                      onPressedSwitch(value);
-                    },
-                    activeColor: Color(0xFF551EFF),
-                    inactiveThumbColor: Colors.white54,
-                    inactiveTrackColor: Colors.black45,
-
-                  ),
-                ),//dark mode
-                ReuseableSettingsField(
-                  fieldName: 'Help',
-                  iconData: Icons.support_sharp,
-                  boxColor: Color(0xFFFFE7ED),
-                  iconColor: Color(0xFFFD2253),
-                  page: ContactUs(),
-                  titleWidget: ReuseableBoxArrow(),
-                ),//help
+                const SizedBox(height: 21.0),
               ],
             ),
           ),
-          SizedBox(height: 47.0),
-        ],
-      ),
-    );
-  }
-}
-
-
-class ReuseableSettingsField extends StatelessWidget {
-  ReuseableSettingsField({required this.iconData, required this.fieldName,
-    required this.boxColor, required this.iconColor, required this.page, required this.titleWidget});
-  final IconData iconData;
-  final String fieldName;
-  final Color boxColor;
-  final Color iconColor;
-  final Widget page;
-  final Widget titleWidget;
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        child: Row(
-          children: [
-            Expanded(
-              child: ListTile(
-                leading: ReuseableRoundedIcon(
-                  size: 28.0,
-                  height: 57.0,
-                  width: 57.0,
-                  boxColor: boxColor,
-                  iconColor: iconColor,
-                  boxIcon: iconData,
-                ),
-                title: Text(
-                  fieldName,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.7,
-                      fontWeight: FontWeight.w500
-                  ),
-                ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 8.3,),
-              ),
-            ),
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(context, PageTransition(type:PageTransitionType.rightToLeftWithFade, child: page));
-                },
-                child: titleWidget
-            ),
-          ],
         ),
       ),
     );
   }
 }
 
-class ReuseableBoxArrow extends StatelessWidget {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 57.1,
-      height: 57.1,
-      child: Icon(
-        Icons.chevron_right_outlined,
-        color: Colors.black,
-        size: 24,
-      ),
-      decoration: BoxDecoration(
-        color: Color(0xFFF5F5F7),
-        borderRadius: BorderRadius.circular(18),
-      ),
-    );
-  }
-}

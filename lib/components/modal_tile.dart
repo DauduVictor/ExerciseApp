@@ -20,7 +20,7 @@ class ReusableModalListTile extends StatelessWidget {
       ),
       title: Text(
         titleText,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
           letterSpacing: 0.30,
           fontSize: 19.0,

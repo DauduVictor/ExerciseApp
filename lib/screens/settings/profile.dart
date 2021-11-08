@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/components/round_box_icon.dart';
 import 'refactoredWidgets.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -78,7 +79,7 @@ class Profile extends StatelessWidget {
                             SizedBox(width: 73,),
                             Column(
                               children: [
-                                ReuseableRoundedIcon(
+                                ReusableRoundedIcon(
                                   size: 50.0,
                                   height: 90.0,
                                   width: 90.0,
@@ -123,7 +124,7 @@ class Profile extends StatelessWidget {
                           SizedBox(width: 53,),
                           Row(
                             children: [
-                              ReuseableRoundedIcon(
+                              ReusableRoundedIcon(
                                 size: 30.0,
                                 height: 60.0,
                                 width: 60.0,
@@ -132,7 +133,7 @@ class Profile extends StatelessWidget {
                                 boxIcon: Icons.male_sharp,
                               ),
                               SizedBox(width: 20.0,),
-                              ReuseableRoundedIcon(
+                              ReusableRoundedIcon(
                                 size: 30.0,
                                 height: 60.0,
                                 width: 60.0,

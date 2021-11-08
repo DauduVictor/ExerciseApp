@@ -6,7 +6,7 @@ import 'package:untitled1/components/dashboard_card.dart';
 import 'package:untitled1/components/modal_tile.dart';
 import 'package:untitled1/screens/settings/allSettings.dart';
 import 'package:untitled1/screens/settings/contactUs.dart';
-import '../init_screen/split_log_sin.dart';
+import '../../splash.dart';
 
 class Dashboard extends StatefulWidget {
 
@@ -185,7 +185,7 @@ class _DashboardState extends State<Dashboard> {
                   iconName: Icons.fitness_center_rounded,
                   name: 'All Exercises',
                   color: touchedIcon == myColor.exercise ? _kActiveColor : _kInActiveColor,
-                  iconSize: touchedIconSize ==  myColor.exercise? _kActiveIconSize:_kInActiveIconSize,
+                  iconSize: touchedIconSize ==  myColor.exercise? _kActiveIconSize: _kInActiveIconSize,
                 ),
               ),
               GestureDetector(
@@ -214,14 +214,14 @@ class _DashboardState extends State<Dashboard> {
 Widget _bottomModalSheet(BoxConstraints constraints) {
   return StatefulBuilder(
     builder: (context, setState) => Container(
-      height: constraints.maxHeight*0.611,
+      height: constraints.maxHeight/2.4,
       color: Colors.deepOrangeAccent.withOpacity(0.1),
       child: Column(
         children: [
           Center(
             child: Container(
-              margin: EdgeInsets.only(top: 3.0),
-              height: constraints.maxHeight*0.013,
+              margin: const EdgeInsets.only(top: 3.0),
+              height: 6,
               width: constraints.maxWidth*0.18,
               decoration: BoxDecoration(
                 color: Colors.black,
@@ -229,114 +229,103 @@ Widget _bottomModalSheet(BoxConstraints constraints) {
               ),
             ),
           ),
-          Container(
-            height: constraints.maxHeight*0.575,
-            child: Padding(
-              padding:  EdgeInsets.only(top: constraints.maxHeight*0.015,),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    //height: constraints.maxHeight*0.137,
-                    width: constraints.maxWidth,
-                    child: TextButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                          EdgeInsets.all(0.0),
-                        ),
-                      ),
-                      child: ReusableModalListTile(
-                        icon: IconlyBroken.infoSquare,
-                        titleText: 'Become a trainer',
-                      ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(height: 4),
+                ///become a trainer
+                Container(
+                  width: constraints.maxWidth,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(0.0),
                     ),
-                  ),//become a trainer
-                  Container(
-                    //height: constraints.maxHeight*0.137,
-                    width: constraints.maxWidth,
-                    child: TextButton(
-                      onPressed: () {
-                      },
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                          EdgeInsets.all(0.0),
-                        ),
-                      ),
-                      child: ReusableModalListTile(
-                        icon: IconlyBold.graph,
-                        titleText: 'Reach out to a trainer',
-                      ),
+                    child: ReusableModalListTile(
+                      icon: IconlyBroken.infoSquare,
+                      titleText: 'Become a trainer',
                     ),
-                  ),//reach out to a trainer
-                  Container(
-                    //height: constraints.maxHeight*0.137,
-                    width: constraints.maxWidth,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context, PageTransition(
-                          type:PageTransitionType.rightToLeftWithFade, child:  ContactUs()));
-                      },
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                          EdgeInsets.all(0.0),
-                        ),
-                      ),
-                      child: ReusableModalListTile(
-                        icon: IconlyBold.swap,
-                        titleText: 'Report a problem',
-                      ),
+                  ),
+                ),
+                ///reach out to a trainer
+                Container(
+                  width: constraints.maxWidth,
+                  child: TextButton(
+                    onPressed: () {
+                    },
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(0.0),
                     ),
-                  ),//report a problem
-                  Container(
-                    //height: constraints.maxHeight*0.137,
-                    width: constraints.maxWidth,
-                    child: TextButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text('Do you want to logout of your account?',),
-                            content: Row(
-                              children: [
-                                Text('Click '),
-                                Text('cancel', style: TextStyle(fontWeight: FontWeight.bold),),
-                                Text(' to stay...'),
-                              ],
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: (){
-                                  Navigator.pop(context);
-                                },
-                                child: Text('Cancel'),
-                              ),
-                              TextButton(
-                                onPressed: (){
-                                  //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-                                  Navigator.pop(context);
-                                  Navigator.of(context).pushNamedAndRemoveUntil(Split.id, (Route<dynamic>route) => false);
-                                },
-                                child: Text('Logout'),
-                              ),
+                    child: ReusableModalListTile(
+                      icon: IconlyBold.graph,
+                      titleText: 'Reach out to a trainer',
+                    ),
+                  ),
+                ),
+                ///report a problem
+                Container(
+                  width: constraints.maxWidth,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context, PageTransition(
+                        type:PageTransitionType.rightToLeftWithFade, child:  ContactUs()));
+                    },
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(0.0),
+                    ),
+                    child: ReusableModalListTile(
+                      icon: IconlyBold.swap,
+                      titleText: 'Report a problem',
+                    ),
+                  ),
+                ),
+                ///log out
+                Container(
+                  width: constraints.maxWidth,
+                  child: TextButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Do you want to logout of your account?',),
+                          content: Row(
+                            children: [
+                              Text('Click '),
+                              Text('cancel', style: TextStyle(fontWeight: FontWeight.bold),),
+                              Text(' to stay...'),
                             ],
                           ),
-                        );
-                      },
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                          EdgeInsets.all(0.0),
+                          actions: [
+                            TextButton(
+                              onPressed: (){
+                                Navigator.pop(context);
+                              },
+                              child: Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: (){
+                                //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                                Navigator.pop(context);
+                                Navigator.of(context).pushNamedAndRemoveUntil(SplashScreen.id, (Route<dynamic>route) => false);
+                              },
+                              child: Text('Logout'),
+                            ),
+                          ],
                         ),
-                      ),
-                      child: ReusableModalListTile(
-                        icon: IconlyBroken.logout,
-                        titleText: 'Log Out',
-                      ),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(0.0),
                     ),
-                  ),//log out
-                ],
-              ),
+                    child: ReusableModalListTile(
+                      icon: IconlyBroken.logout,
+                      titleText: 'Log Out',
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

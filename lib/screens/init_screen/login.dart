@@ -28,8 +28,8 @@ class _LoginState extends State<Login> {
   /// Variable to hold the bool value of the [CircleIndicator()]
   bool _showSpinner = false;
 
-  /// Variable to hold the bool value of the obscure text in the form field
-  bool _obscureText = true;
+  /// Variable to hold the bool value of [Password] obscure text in the form field
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -351,17 +351,17 @@ class _LoginState extends State<Login> {
                 labelText: 'Password',
                 contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
                 suffix: IconButton(
-                  icon: Icon(_obscureText ? IconlyBold.show : IconlyBold.hide),
+                  icon: Icon(_obscurePassword ? IconlyBold.show : IconlyBold.hide),
                   color: Color(0xFFAEAEB2),
                   iconSize: 27,
                   splashRadius: 5.0,
                   onPressed: () {
-                    setState(() => _obscureText = !_obscureText);
+                    setState(() => _obscurePassword = !_obscurePassword);
                   },
                 ),
               ),
               controller: _passwordController,
-              obscureText: _obscureText,
+              obscureText: _obscurePassword,
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.text,
               validator: (value) {

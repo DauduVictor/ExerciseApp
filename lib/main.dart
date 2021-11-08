@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled1/screens/dashboard/dashboard.dart';
 import 'package:untitled1/screens/init_screen/login.dart';
 import 'package:untitled1/screens/init_screen/signup.dart';
+import 'package:untitled1/screens/settings/contactUs.dart';
 import 'package:untitled1/splash.dart';
 import 'package:untitled1/screens/init_screen/split_log_sin.dart';
 
@@ -28,6 +29,7 @@ class _MyAppState extends State<MyApp> {
         Login.id : (context) => Login(),
         SignUp.id : (context) => SignUp(),
         Dashboard.id: (context) => Dashboard(),
+        ContactUs.id: (context) => ContactUs(),
       },
       theme: ThemeData(fontFamily: 'Poppins'),
     );

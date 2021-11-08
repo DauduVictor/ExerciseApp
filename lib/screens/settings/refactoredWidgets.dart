@@ -13,33 +13,6 @@ class ReuseableDivider extends StatelessWidget {
   }
 }//Divider
 
-class ReuseableRoundedIcon extends StatelessWidget {
-  ReuseableRoundedIcon({required this.boxColor, required this.boxIcon, required this.iconColor, required this.width, required this.height, required this.size });
-  final Color boxColor;
-  final IconData boxIcon;
-  final Color iconColor;
-  final double width;
-  final double height;
-  final double size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      child: Icon(
-        boxIcon,
-        color: iconColor,
-        size: size, // icon size
-      ),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: boxColor,
-      ),
-    );
-  }
-}//Icon
-
 class ReuseableField extends StatelessWidget {
   ReuseableField({required this.fieldTitle, required this.fieldLeading});
   final String fieldTitle;
