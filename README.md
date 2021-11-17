@@ -29,7 +29,6 @@ LOGIN AND SIGN UP
 ![Screenshot_2021-11-17-15-19-54-278_com example untitled1](https://user-images.githubusercontent.com/83707761/142220435-a98a75e6-2fad-4ad1-81c8-4cf5ff71e381.jpg)
 ![Screenshot_2021-11-17-15-18-54-150_com example untitled1](https://user-images.githubusercontent.com/83707761/142220443-d4fc5c60-0d27-432c-ac8b-e8fa344510c2.jpg)
 ![Screenshot_2021-11-17-15-19-21-678_com example untitled1](https://user-images.githubusercontent.com/83707761/142220448-da819a6f-8ffc-4529-ac9d-7703d94a3e7c.jpg)
-![Screenshot_2021-11-17-15-19-24-995_com example untitled1](https://user-images.githubusercontent.com/83707761/142220457-207adb38-dd86-4d64-aa2c-3a8c4e61bcbe.jpg)
 
 Dashboard 
 ![Screenshot_2021-11-17-15-20-05-699_com example untitled1](https://user-images.githubusercontent.com/83707761/142220627-996f7b69-1173-4ac6-9e50-91a8c17fbc86.jpg)
