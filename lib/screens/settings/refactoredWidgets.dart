@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-class ReuseableDivider extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Divider(
-      indent: 80,
-      endIndent: 10,
-      thickness: 0.4,
-
-    );
-  }
-}//Divider
-
 class ReuseableField extends StatelessWidget {
   ReuseableField({required this.fieldTitle, required this.fieldLeading});
   final String fieldTitle;

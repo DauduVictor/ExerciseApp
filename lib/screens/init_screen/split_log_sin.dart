@@ -51,7 +51,7 @@ class _SplitState extends State<Split> with TickerProviderStateMixin{
   /// Function to change the page view automatically
   void _changePageAutomatically() {
     int i = 0;
-    while (i < 2){
+    while (i <= 2){
       Timer(
         Duration(seconds: 4), () =>
         _pageController.nextPage(
@@ -61,8 +61,6 @@ class _SplitState extends State<Split> with TickerProviderStateMixin{
       i += 1;
     }
   }
-
-
 
   @override
   void initState() {

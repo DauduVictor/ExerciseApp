@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/screens/dashboard/Diet.dart';
+import 'package:untitled1/screens/dashboard/diet_recommendation.dart';
 
 class ReusableCard extends StatefulWidget {
 
   final String cardName;
   final String image;
+  final String heroTag;
+  final String route;
 
   ReusableCard({
     required this.cardName,
-    required this.image
+    required this.image,
+    required this.heroTag,
+    required this.route
   });
 
 
@@ -20,21 +24,12 @@ class _ReusableCardState extends State<ReusableCard> {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Diet()));
+        Navigator.pushNamed(context, widget.route);
       },
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-          EdgeInsets.all(1.0),
-        ),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-
-      ),
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.all(1.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16))),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(11.0),
@@ -46,24 +41,28 @@ class _ReusableCardState extends State<ReusableCard> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(widget.image),
-                      fit: BoxFit.contain,
+                  flex: 1,
+                  child: Hero(
+                    tag: widget.heroTag,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(widget.image),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
               Expanded(
                 flex: 0,
                 child: Text(
                   widget.cardName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ),

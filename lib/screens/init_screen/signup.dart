@@ -5,6 +5,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/components/circle-indicator.dart';
 import 'package:untitled1/utils/constant.dart';
+import 'package:untitled1/utils/size_config.dart';
 import 'login.dart';
 
 class SignUp extends StatefulWidget {
@@ -36,21 +37,23 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: GestureDetector(
-          onTap: (){
-            FocusScopeNode currentFocus = FocusScope.of(context);
-            if(!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
-          },
-          child: AbsorbPointer(
-            absorbing: _showSpinner,
-            child: LayoutBuilder(
-              builder: (context, constraints) =>
-                  SingleChildScrollView(
-                    child: Container(
+    SizeConfig().init(context);
+    return Scaffold(
+      body: GestureDetector(
+        onTap: (){
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if(!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
+        },
+        child: AbsorbPointer(
+          absorbing: _showSpinner,
+          child: SingleChildScrollView(
+            child: Container(
+              height: SizeConfig.screenHeight,
+              child: LayoutBuilder(
+                builder: (context, constraints) =>
+                    Container(
                       height: constraints.maxHeight,
-                      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+                      padding: const EdgeInsets.fromLTRB(15, 60, 15, 15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -163,6 +166,8 @@ class _SignUpState extends State<SignUp> {
                                         ),
                                         child: TextButton(
                                           onPressed: () {
+                                            FocusScopeNode currentFocus = FocusScope.of(context);
+                                            if(!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
                                             if (!_showSpinner){
                                               if(_formKey.currentState!.validate()){
                                                 _signUp();
@@ -195,7 +200,7 @@ class _SignUpState extends State<SignUp> {
                         ],
                       ),
                     ),
-                  ),
+              ),
             ),
           ),
         ),
@@ -222,8 +227,16 @@ class _SignUpState extends State<SignUp> {
               controller: _nameController,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.name,
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(RegExp(r'[!@#%^*(){}[]'':;?/|`~+-]')),
+              ],
               validator: (value) {
-                if (value!.isEmpty) return 'This field is required';
+                if (value!.isEmpty) {
+                  return 'This field is required';
+                }
+                else if (value.length < 2){
+                  return 'Invalid name';
+                }
                 return null;
               },
             ),
@@ -242,81 +255,94 @@ class _SignUpState extends State<SignUp> {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")),
+                FilteringTextInputFormatter.deny(RegExp(r'[ ]')),
               ],
               validator: (value) {
-                if (value!.isEmpty) return 'This field is required';
+                if (value!.isEmpty) {
+                  return 'This field is required';
+                }
+                else if (value.length < 3 && !value.contains('@') && !value.contains('.')) {
+                  return 'Invalid email address';
+                }
                 return null;
               },
             ),
           ),
           const SizedBox(height: 15),
           ///Password
-          Container(
-            height: 74,
-            width: double.infinity,
-            decoration: kFormContainerDecoration,
-            child: TextFormField(
-              style: kFormTextStyle,
-              decoration: kFormInputDecoration.copyWith(
-                labelText: 'Password',
-                contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
-                suffix: IconButton(
-                  icon: Icon(_obscurePassword ? IconlyBold.show : IconlyBold.hide),
-                  color: Color(0xFFAEAEB2),
-                  iconSize: 27,
-                  splashRadius: 5.0,
-                  onPressed: () {
-                    setState(() {
-                      _obscurePassword = !_obscurePassword;
-                    });
+          StatefulBuilder(
+            builder: (context, _setState) {
+              return Container(
+                height: 74,
+                width: double.infinity,
+                decoration: kFormContainerDecoration,
+                child: TextFormField(
+                  style: kFormTextStyle,
+                  decoration: kFormInputDecoration.copyWith(
+                    labelText: 'Password',
+                    contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
+                    suffix: IconButton(
+                      icon: Icon(_obscurePassword ? IconlyBold.show : IconlyBold.hide),
+                      color: Color(0xFFAEAEB2),
+                      iconSize: 27,
+                      splashRadius: 5.0,
+                      onPressed: () {
+                        _setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
+                    ),
+                  ),
+                  controller: _passwordController,
+                  obscureText: _obscurePassword,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value!.isEmpty) return 'This field is required';
+                    else if (value.length < 5) return 'Password length too short';
+                    return null;
                   },
                 ),
-              ),
-              controller: _passwordController,
-              obscureText: _obscurePassword,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                if (value!.isEmpty) return'This field is required';
-                else if (value.length < 5) return'Password length too short';
-                return null;
-              },
-            ),
+              );
+            }
           ),
           const SizedBox(height: 15),
           ///Confirm password
-          Container(
-            height: 74,
-            width: double.infinity,
-            decoration: kFormContainerDecoration,
-            child: TextFormField(
-              style: kFormTextStyle,
-              decoration: kFormInputDecoration.copyWith(
-                labelText: 'Confirm password',
-                contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
-                suffix: IconButton(
-                  icon: Icon(_obscureConfirmPassword ? IconlyBold.show : IconlyBold.hide),
-                  color: Color(0xFFAEAEB2),
-                  iconSize: 27,
-                  splashRadius: 5.0,
-                  onPressed: () {
-                    setState(() {
-                    _obscureConfirmPassword = !_obscureConfirmPassword;
-                    });
+          StatefulBuilder(
+            builder: (context, _setStateConfirm) {
+              return Container(
+                height: 74,
+                width: double.infinity,
+                decoration: kFormContainerDecoration,
+                child: TextFormField(
+                  style: kFormTextStyle,
+                  decoration: kFormInputDecoration.copyWith(
+                    labelText: 'Confirm password',
+                    contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
+                    suffix: IconButton(
+                      icon: Icon(_obscureConfirmPassword ? IconlyBold.show : IconlyBold.hide),
+                      color: Color(0xFFAEAEB2),
+                      iconSize: 27,
+                      splashRadius: 5.0,
+                      onPressed: () {
+                        _setStateConfirm(() {
+                        _obscureConfirmPassword = !_obscureConfirmPassword;
+                        });
+                      },
+                    ),
+                  ),
+                  controller: _confirmPasswordController,
+                  obscureText: _obscureConfirmPassword,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value!.isEmpty) return'This field is required';
+                    else if (_passwordController.text != _confirmPasswordController.text) return'Confirm your pin';
+                    return null;
                   },
                 ),
-              ),
-              controller: _confirmPasswordController,
-              obscureText: _obscureConfirmPassword,
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                if (value!.isEmpty) return'This field is required';
-                else if (_passwordController.text != _confirmPasswordController.text) return'Confirm your pin';
-                return null;
-              },
-            ),
+              );
+            }
           ),
           const SizedBox(height: 15),
         ],

@@ -4,9 +4,13 @@ import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/components/dashboard_buttom_icon.dart';
 import 'package:untitled1/components/dashboard_card.dart';
 import 'package:untitled1/components/modal_tile.dart';
+import 'package:untitled1/screens/dashboard/yoga.dart';
 import 'package:untitled1/screens/settings/allSettings.dart';
 import 'package:untitled1/screens/settings/contactUs.dart';
 import '../../splash.dart';
+import 'diet_recommendation.dart';
+import 'kegal.dart';
+import 'meditation.dart';
 
 class Dashboard extends StatefulWidget {
 
@@ -21,6 +25,27 @@ enum myColor{
 }
 class _DashboardState extends State<Dashboard> {
 
+  /// Variable to hold the greeting
+  String? greeting;
+
+  /// Function that shows greetings based on the users local time
+  void greetingMessage() {
+
+    ///Instance of [DateTime] class
+    var now = DateTime.now().hour;
+
+    if (now < 12) setState(() => greeting = 'Good Morning') ;
+    else if (now < 17) setState(() => greeting = 'Good Afternoon');
+    else setState(() => greeting = 'Good Evening');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    greetingMessage();
+  }
+
+
   final _kActiveColor = Colors.black;
   final _kInActiveColor = Colors.grey.shade600;
   static const _kActiveIconSize = 35.7;
@@ -31,181 +56,239 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: LayoutBuilder(
-          builder: (context, constraints) => SingleChildScrollView(
-            child: Stack(
-                children: [
-                  Container(
-                    color: Colors.deepOrangeAccent.withOpacity(0.2),
-                    height: 365.0,
-                    width: double.infinity,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0,bottom: 20.0, left: 300.0,),
-                          child: GestureDetector(
-                            onTap: (){
-                              showModalBottomSheet(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
-                                ),
-                                context: context,
-                                builder: (context){
-                                  return _bottomModalSheet(constraints);
-                                },
-                              );
-                            },
-                            child: Container(
-                              width: 50.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.deepOrangeAccent.withOpacity(0.41),
-                              ),
-                              child: Icon(
-                                Icons.filter_list_rounded,
-                                color: Colors.white,
-                                size: 40.0,
-                              ),
-                            ),
-                          ),//icon for drawing bottom modal
-                        ),
-                        Text(
-                          'Good Morning',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 36,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.8,
-                          ),
-                        ),
-                        Text(
-                          'Daudu',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 36,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.8,
-                          ),
-                        ),
-                        Container(
-                          height: 52.0,
-                          width: double.infinity,
-                          margin: EdgeInsets.symmetric(vertical: 28.0, horizontal: 20.0),
-                          padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 15.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(37),
-                          ),
-                          child: TextField(
-                            textAlign: TextAlign.start,
-                            decoration: InputDecoration(
-                              icon: Icon(
-                                Icons.search,
-                              ),
-                              hintText: 'Search',
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                            ),
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 0.8,
-                              fontSize: 19.0,
-
-                            ),
-                          ),
-                        ),
-                        Column(
-                          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ReusableCard(
-                                  cardName: 'Diet Recommendation',
-                                  image: 'images/Eating healthy food-rafiki.png',
-                                ),
-                                ReusableCard(
-                                  cardName: 'kagel Exercises',
-                                  image: 'images/Workout-amico.png',
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10.0,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ReusableCard(
-                                  cardName: 'Meditation',
-                                  image: 'images/Meditation-rafiki.png',
-                                ),
-                                ReusableCard(
-                                  cardName: 'Yoga',
-                                  image: 'images/Yoga with face masks-amico.png',
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+    return GestureDetector(
+      onTap: (){
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if(!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
+      },
+      child: Scaffold(
+          body: LayoutBuilder(
+            builder: (context, constraints) => SingleChildScrollView(
+              child: Container(
+                height: constraints.maxHeight,
+                child: Stack(
+                  children: [
+                    Container(
+                      color: Colors.deepOrangeAccent.withOpacity(0.2),
+                      height: constraints.maxHeight * 0.45,
+                      width: double.infinity,
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 20, 15, 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 40),
+                          /// Good morning, button - show modal sheet
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    greeting != null ? greeting! : 'Good day',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.w700,
+                                      letterSpacing: 0.8,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Daudu',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.w700,
+                                      letterSpacing: 0.8,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  showModalBottomSheet(
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+                                    ),
+                                    context: context,
+                                    builder: (context){
+                                      return _bottomModalSheet(constraints);
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.deepOrangeAccent.withOpacity(0.41),
+                                  ),
+                                  child: Icon(
+                                    Icons.filter_list_rounded,
+                                    color: Colors.white,
+                                    size: 40.0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          /// Search
+                          Container(
+                            height: 52.0,
+                            width: double.infinity,
+                            margin: EdgeInsets.symmetric(vertical: 28.0, horizontal: 20.0),
+                            padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 15.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(37),
+                            ),
+                            child: TextField(
+                              textAlign: TextAlign.start,
+                              decoration: InputDecoration(
+                                icon: Icon(
+                                  Icons.search,
+                                ),
+                                hintText: 'Search',
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                              ),
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 0.8,
+                                fontSize: 19.0,
+
+                              ),
+                            ),
+                          ),
+                          ///Exercise cards
+                          Column(
+                            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ReusableCard(
+                                    cardName: 'Diet Recommendation',
+                                    image: 'assets/images/Eating healthy food-rafiki.png',
+                                    route: Diet.id,
+                                    heroTag: 'dietPage',
+                                  ),
+                                  ReusableCard(
+                                    cardName: 'kagel Exercises',
+                                    image: 'assets/images/Workout-amico.png',
+                                    route: Kegal.id,
+                                    heroTag: 'kegalPage',
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10.0),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ReusableCard(
+                                    cardName: 'Meditation',
+                                    image: 'assets/images/Meditation-rafiki.png',
+                                    route: Meditation.id,
+                                    heroTag: 'mediationPage',
+                                  ),
+                                  ReusableCard(
+                                    cardName: 'Yoga',
+                                    image: 'assets/images/Yoga with face masks-amico.png',
+                                    route: Yoga.id,
+                                    heroTag: 'yogaPage',
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 25),
+                          ///launch map
+                          Center(
+                            child: Container(
+                              width: constraints.maxWidth / 1.5,
+                              margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child:  Padding(
+                                  padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
+                                  child: ListTile(
+                                    leading: Icon(
+                                      Icons.ac_unit_outlined,
+                                      color: Colors.blue.withOpacity(0.4),
+                                      size: 34,
+                                    ),
+                                    title: Text(
+                                      'Find a partner',
+                                      style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-          ),
-        ),
-        bottomNavigationBar: Container(
-          height: 68.5,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              top: BorderSide(width:0.1, color: Colors.black,),
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    touchedIcon = myColor.exercise;
-                    touchedIconSize = myColor.exercise;
-                  });
-                },
-                child: ReusableBottomIcon(
-                  iconName: Icons.fitness_center_rounded,
-                  name: 'All Exercises',
-                  color: touchedIcon == myColor.exercise ? _kActiveColor : _kInActiveColor,
-                  iconSize: touchedIconSize ==  myColor.exercise? _kActiveIconSize: _kInActiveIconSize,
-                ),
+          bottomNavigationBar: Container(
+            height: 68.5,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(width:0.1, color: Colors.black,),
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    touchedIcon = myColor.settings;
-                    touchedIconSize =  myColor.settings;
-                    Navigator.push(context, PageTransition(type:PageTransitionType.rightToLeftWithFade, child:  AllSettings()));
-                  });
-                },
-                child: ReusableBottomIcon(
-                  iconName: IconlyBold.setting,
-                  name: 'Settings',
-                  color: touchedIcon == myColor.settings?_kActiveColor:_kInActiveColor ,
-                  iconSize: touchedIconSize ==  myColor.settings? _kActiveIconSize:_kInActiveIconSize,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      touchedIcon = myColor.exercise;
+                      touchedIconSize = myColor.exercise;
+                    });
+                  },
+                  child: ReusableBottomIcon(
+                    iconName: Icons.fitness_center_rounded,
+                    name: 'Home',
+                    color: touchedIcon == myColor.exercise ? _kActiveColor : _kInActiveColor,
+                    iconSize: touchedIconSize ==  myColor.exercise? _kActiveIconSize: _kInActiveIconSize,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        )
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      touchedIcon = myColor.settings;
+                      touchedIconSize =  myColor.settings;
+                      Navigator.push(context, PageTransition(type:PageTransitionType.rightToLeftWithFade, child:  AllSettings()));
+                    });
+                  },
+                  child: ReusableBottomIcon(
+                    iconName: IconlyBold.setting,
+                    name: 'Settings',
+                    color: touchedIcon == myColor.settings?_kActiveColor:_kInActiveColor ,
+                    iconSize: touchedIconSize ==  myColor.settings? _kActiveIconSize:_kInActiveIconSize,
+                  ),
+                ),
+              ],
+            ),
+          )
+      ),
     );
   }
 

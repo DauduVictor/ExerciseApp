@@ -15,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
 
   void _navigate() {
-    Timer(Duration(seconds: 3), ()=> Navigator.pushReplacementNamed(context, Split.id));
+    Timer(const Duration(seconds: 3), ()=> Navigator.pushReplacementNamed(context, Split.id));
   }
 
   @override
@@ -25,17 +25,17 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       top: false,
       bottom: false,
       child: Scaffold(
         body: Center(
           child: Text(
-            'Exercise App',
+            '░ ▒ ▓ █ เ૨εσmmεn∂ █ ▓ ▒ ░',
             style: TextStyle(
               color: Colors.black,
-              fontSize: 23,
-              fontWeight: FontWeight.w600,
+              fontSize: 26,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),

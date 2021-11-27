@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +9,7 @@ import 'package:untitled1/components/circle-indicator.dart';
 import 'package:untitled1/screens/dashboard/dashboard.dart';
 import 'package:untitled1/screens/init_screen/signup.dart';
 import 'package:untitled1/utils/constant.dart';
+import 'package:untitled1/utils/size_config.dart';
 
 class Login extends StatefulWidget {
 
@@ -33,21 +35,23 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: GestureDetector(
-          onTap: (){
-            FocusScopeNode currentFocus = FocusScope.of(context);
-            if(!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
-          },
-          child: AbsorbPointer(
-            absorbing: _showSpinner,
-            child: LayoutBuilder(
-              builder: (contexts, constraints) =>
-                  SingleChildScrollView(
-                    child: Container(
+    SizeConfig().init(context);
+    return Scaffold(
+      body: GestureDetector(
+        onTap: (){
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if(!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
+        },
+        child: AbsorbPointer(
+          absorbing: _showSpinner,
+          child: SingleChildScrollView(
+            child: Container(
+              height: SizeConfig.screenHeight,
+              child: LayoutBuilder(
+                builder: (contexts, constraints) =>
+                    Container(
                       height: constraints.maxHeight,
-                      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+                      padding: const EdgeInsets.fromLTRB(15, 60, 15, 15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -65,58 +69,38 @@ class _LoginState extends State<Login> {
                                     size: 34.0,
                                   ),
                                 ),
-                                Container(
-                                  width: 192,
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            'No account? ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 17,
-                                              color: Color(0xFF68739B),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 32,
-                                            child: TextButton(
-                                              onPressed: () {
-                                                Navigator.pushReplacement(
-                                                    context,
-                                                    PageTransition(type:PageTransitionType.fade, child:  SignUp()));
-                                              },
-                                              style: TextButton.styleFrom(
-                                                padding: EdgeInsets.all(0.0),
-                                              ),
-                                              child: const Text(
-                                                'Sign Up',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 19,
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),//text-- no account?sign up
-                                      Container(
-                                        width: constraints.maxWidth,
-                                        height: 2.8,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFBEBEC3),
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Color(0xFFAB4148),
-                                              Color(0xFF189DF4),
-                                            ],
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'No account? ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 17,
+                                        color: Color(0xFF68739B),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 32,
+                                      child: TextButton(
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                              context,
+                                              PageTransition(type:PageTransitionType.fade, child:  SignUp()));
+                                        },
+                                        style: TextButton.styleFrom(
+                                          padding: EdgeInsets.all(0.0),
+                                        ),
+                                        child: const Text(
+                                          'Sign Up',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 19,
+                                            color: Colors.black,
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),//no account text
                               ],
                             ),
@@ -175,6 +159,8 @@ class _LoginState extends State<Login> {
                                           ),
                                           child: TextButton(
                                             onPressed: () {
+                                              FocusScopeNode currentFocus = FocusScope.of(context);
+                                              if(!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
                                               if (!_showSpinner){
                                                 if(_formKey.currentState!.validate()){
                                                   _logIn();
@@ -306,7 +292,7 @@ class _LoginState extends State<Login> {
                         ],
                       ),
                     ),
-                  ),
+              ),
             ),
           ),
         ),
@@ -333,42 +319,54 @@ class _LoginState extends State<Login> {
               controller: _eMailController,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(RegExp('[ ]')),
+              ],
               validator: (value) {
-                if (value!.isEmpty) return 'This field is required';
+                if (value!.isEmpty) {
+                  return 'This field is required';
+                }
+                if (value.length < 3 && !value.contains('@') && !value.contains('.')) {
+                  return 'Invalid email address';
+                }
                 return null;
               },
             ),
           ),
           const SizedBox(height: 15),
           ///Password
-          Container(
-            height: 74,
-            width: double.infinity,
-            decoration: kFormContainerDecoration,
-            child: TextFormField(
-              style: kFormTextStyle,
-              decoration: kFormInputDecoration.copyWith(
-                labelText: 'Password',
-                contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
-                suffix: IconButton(
-                  icon: Icon(_obscurePassword ? IconlyBold.show : IconlyBold.hide),
-                  color: Color(0xFFAEAEB2),
-                  iconSize: 27,
-                  splashRadius: 5.0,
-                  onPressed: () {
-                    setState(() => _obscurePassword = !_obscurePassword);
+          StatefulBuilder(
+            builder: (context, _setState) {
+              return Container(
+                height: 74,
+                width: double.infinity,
+                decoration: kFormContainerDecoration,
+                child: TextFormField(
+                  style: kFormTextStyle,
+                  decoration: kFormInputDecoration.copyWith(
+                    labelText: 'Password',
+                    contentPadding: EdgeInsets.fromLTRB(21.0, 8.0, 15.0, 17.0),
+                    suffix: IconButton(
+                      icon: Icon(_obscurePassword ? IconlyBold.show : IconlyBold.hide),
+                      color: Color(0xFFAEAEB2),
+                      iconSize: 27,
+                      splashRadius: 5.0,
+                      onPressed: () {
+                        _setState(() => _obscurePassword = !_obscurePassword);
+                      },
+                    ),
+                  ),
+                  controller: _passwordController,
+                  obscureText: _obscurePassword,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value!.isEmpty) return 'This field is required';
+                    return null;
                   },
                 ),
-              ),
-              controller: _passwordController,
-              obscureText: _obscurePassword,
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                if (value!.isEmpty) return'This field is required';
-                return null;
-              },
-            ),
+              );
+            }
           ),
           const SizedBox(height: 20),
         ],

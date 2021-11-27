@@ -111,7 +111,10 @@ class _AllSettingsState extends State<AllSettings> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(context, CupertinoPageRoute(builder: (context) => Profile()));
+                                Navigator.push(
+                                  context,
+                                  PageTransition(type:PageTransitionType.rightToLeftWithFade, child: Profile())
+                                );
                               },
                               child: ReusableBoxArrow(),
                             ),
