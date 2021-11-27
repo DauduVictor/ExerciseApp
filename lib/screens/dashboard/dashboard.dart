@@ -23,7 +23,7 @@ class Dashboard extends StatefulWidget {
 enum myColor{
   exercise, settings,
 }
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   /// Variable to hold the greeting
   String? greeting;
@@ -39,10 +39,37 @@ class _DashboardState extends State<Dashboard> {
     else setState(() => greeting = 'Good Evening');
   }
 
+  /// Variable to hold the animation controller
+  late AnimationController _controller;
+
+  /// Variable to hold the tween value of the animation
+  late Animation<double> _elevationAnimation;
+
   @override
   void initState() {
     super.initState();
     greetingMessage();
+    _controller = AnimationController(
+      duration: Duration(milliseconds: 600),
+      vsync: this,
+    );
+
+    _elevationAnimation = Tween(begin: 1.0, end: 20.0).animate(_controller);
+
+    /// Make the [Animation_Controller] know about the new values being fired
+    _controller.addListener(() {
+      setState(() { });
+    });
+
+    _controller.repeat(
+      reverse: true
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
 
@@ -207,34 +234,40 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           SizedBox(height: 25),
                           ///launch map
-                          Center(
-                            child: Container(
-                              width: constraints.maxWidth / 1.5,
-                              margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child:  Padding(
-                                  padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
-                                  child: ListTile(
-                                    leading: Icon(
-                                      Icons.ac_unit_outlined,
-                                      color: Colors.blue.withOpacity(0.4),
-                                      size: 34,
+                          AnimatedBuilder(
+                            animation: _controller,
+                            builder: (context, child) {
+                              return Center(
+                                child: SizedBox(
+                                  width: constraints.maxWidth / 1.5,
+                                  child: Card(
+                                    elevation: _elevationAnimation.value,
+                                    shadowColor: Colors.purple.withOpacity(0.45),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    title: Text(
-                                      'Find a partner',
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(0.8),
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 17,
+                                    child:  Padding(
+                                      padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
+                                      child: ListTile(
+                                        leading: Icon(
+                                          Icons.ac_unit_outlined,
+                                          color: Colors.blue,
+                                          size: 34,
+                                        ),
+                                        title: Text(
+                                          'Find a partner',
+                                          style: TextStyle(
+                                            color: Colors.black.withOpacity(0.8),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 17,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           ),
                         ],
                       ),

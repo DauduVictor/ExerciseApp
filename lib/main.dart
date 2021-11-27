@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: SplashScreen.id,
+      initialRoute: Dashboard.id,
       routes: {
         SplashScreen.id:(context) => const SplashScreen(),
         Split.id:(context) => Split(),
