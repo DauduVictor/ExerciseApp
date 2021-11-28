@@ -23,8 +23,8 @@ class _MapsState extends State<Maps> {
                     child: Text(
                       'MAPS',
                       style: TextStyle(
-                          fontSize: 50,
-                          color: Colors.black
+                        fontSize: 50,
+                        color: Colors.black
                       ),
                     ),
                   )
@@ -47,7 +47,7 @@ class _MapsState extends State<Maps> {
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
-                        Icons.menu,
+                        Icons.arrow_back,
                         color: Colors.black,
                         size: 32,
                       ),

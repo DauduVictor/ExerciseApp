@@ -99,7 +99,7 @@ class _NoteState extends State<Note> {
               child: NotificationListener<UserScrollNotification>(
                 onNotification: (UserScrollNotification notification) {
                   setState(() {
-                    if(notification.metrics.pixels <= notification.metrics.maxScrollExtent - constraints.maxHeight * 0.5){
+                    if(notification.metrics.pixels <= notification.metrics.maxScrollExtent - constraints.maxHeight * 0.47){
                       _controller.pause();
                     }
                     if(notification.direction == ScrollDirection.forward) _showAppBar = true;
@@ -111,7 +111,6 @@ class _NoteState extends State<Note> {
                   radius: Radius.circular(20.0),
                   interactive: true,
                   child: SingleChildScrollView(
-                    physics: Clam
                     child: Container(
                       padding: const EdgeInsets.fromLTRB(13, 10, 13, 14),
                       child: Column(

@@ -4,12 +4,14 @@ import 'package:page_transition/page_transition.dart';
 import 'package:untitled1/components/dashboard_buttom_icon.dart';
 import 'package:untitled1/components/dashboard_card.dart';
 import 'package:untitled1/components/modal_tile.dart';
+import 'package:untitled1/location/location.dart';
 import 'package:untitled1/screens/dashboard/yoga.dart';
 import 'package:untitled1/screens/settings/allSettings.dart';
 import 'package:untitled1/screens/settings/contactUs.dart';
 import '../../splash.dart';
 import 'diet_recommendation.dart';
 import 'kegal.dart';
+import 'maps.dart';
 import 'meditation.dart';
 
 class Dashboard extends StatefulWidget {
@@ -25,8 +27,23 @@ enum myColor{
 }
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
+  /// Instantiating a class of the [LocationHelper]
+  var location = LocationHelper();
+
   /// Variable to hold the greeting
   String? greeting;
+
+  /// Variable to hold the animation controller
+  late AnimationController _controller;
+
+  /// Variable to hold the tween value of the animation
+  late Animation<double> _elevationAnimation;
+
+  ///Variable to hold the temperature
+  double? lat;
+
+  ///Variable to hold the temperature
+  double? lon;
 
   /// Function that shows greetings based on the users local time
   void greetingMessage() {
@@ -39,16 +56,20 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     else setState(() => greeting = 'Good Evening');
   }
 
-  /// Variable to hold the animation controller
-  late AnimationController _controller;
-
-  /// Variable to hold the tween value of the animation
-  late Animation<double> _elevationAnimation;
+  ///Function to get users long and lat with [Location_Helper]
+  void _getUserLocation() async{
+    await location.getLocation();
+    setState((){
+      lat = location.lat;
+      lon = location.long;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     greetingMessage();
+    _getUserLocation();
     _controller = AnimationController(
       duration: Duration(milliseconds: 600),
       vsync: this,
@@ -246,20 +267,27 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    child:  Padding(
-                                      padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
-                                      child: ListTile(
-                                        leading: Icon(
-                                          Icons.ac_unit_outlined,
-                                          color: Colors.blue,
-                                          size: 34,
-                                        ),
-                                        title: Text(
-                                          'Find a partner',
-                                          style: TextStyle(
-                                            color: Colors.black.withOpacity(0.8),
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 17,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => Maps()));
+                                      },
+                                      child:  Padding(
+                                        padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
+                                        child: ListTile(
+                                          leading: Icon(
+                                            Icons.ac_unit_outlined,
+                                            color: Colors.blue,
+                                            size: 34,
+                                          ),
+                                          title: Text(
+                                            'Find a partner',
+                                            style: TextStyle(
+                                              color: Colors.black.withOpacity(0.8),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 17,
+                                            ),
                                           ),
                                         ),
                                       ),
