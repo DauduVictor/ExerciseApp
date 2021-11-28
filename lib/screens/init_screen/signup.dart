@@ -61,6 +61,7 @@ class _SignUpState extends State<SignUp> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                ///back button
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.pop(context);
@@ -70,61 +71,43 @@ class _SignUpState extends State<SignUp> {
                                     color: Colors.black,
                                     size: 34.0,
                                   ),
-                                ),//back button
-                                Container(
-                                  width: 225,
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            'Have an account? ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 17,
-                                              color: Color(0xFF68739B),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 32,
-                                            child: TextButton(
-                                              onPressed: () {
-                                                Navigator.pushReplacement(
-                                                  context,
-                                                  PageTransition(type:PageTransitionType.fade, child: Login())
-                                                );
-                                              },
-                                              style: TextButton.styleFrom(
-                                                padding: EdgeInsets.all(0.0),
-                                              ),
-                                              child: const Text(
-                                                'Login',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 19,
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),//text-- no account?login
-                                      Container(
-                                        width: constraints.maxWidth,
-                                        height: 2.8,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFBEBEC3),
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Color(0xFFAB4148),
-                                              Color(0xFF189DF4),
-                                            ],
+                                ),
+                                ///account? button
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Text(
+                                      'Have an account?',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 17,
+                                        color: Color(0xFF68739B),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 32,
+                                      child: TextButton(
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            PageTransition(type:PageTransitionType.fade, child: Login())
+                                          );
+                                        },
+                                        style: TextButton.styleFrom(
+                                          padding: EdgeInsets.all(0.0),
+                                        ),
+                                        child: const Text(
+                                          'Login',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 19,
+                                            color: Colors.black,
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),//no account text
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),

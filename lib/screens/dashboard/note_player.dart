@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -67,12 +68,17 @@ class _NoteState extends State<Note> {
     super.dispose();
   }
 
+  /// Variabe to show appbar if user scrolls towards the bottom of the screen
+  bool _showAppBar = true;
+
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: false,
+      bottom: false,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: _showAppBar == true ? AppBar(
           iconTheme: IconThemeData(
             color: Colors.white,
           ),
@@ -84,114 +90,137 @@ class _NoteState extends State<Note> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          ),
-        body: Container(
-          height: double.maxFinite,
-          color: Colors.white,
-          child: SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(13, 10, 13, 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Notifications are for delete, discounts, expenses, Inventory out of stock and so on. You also get a notification when'
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
-                        ' Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 19,
-                      wordSpacing: 1.5,
-                    ),
-                  ),
-                  const SizedBox(height: 22),
-                  YoutubePlayerBuilder(
-                    onExitFullScreen: () {
-                      /// The player forces portraitUp after exiting fullscreen. This overrides the behaviour.
-                      SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-                    },
-                    onEnterFullScreen: () {
-                      SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-                    },
-                    player: YoutubePlayer(
-                      controller: _controller,
-                      showVideoProgressIndicator: true,
-                      progressIndicatorColor: Colors.orange,
-                      topActions: [
-                        const SizedBox(width: 8.0),
-                        Expanded(
-                          child: Text(
-                            _controller.metadata.title,
+          ) : null,
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            return Container(
+              height: double.maxFinite,
+              color: Colors.white,
+              child: NotificationListener<UserScrollNotification>(
+                onNotification: (UserScrollNotification notification) {
+                  setState(() {
+                    if(notification.metrics.pixels <= notification.metrics.maxScrollExtent - constraints.maxHeight * 0.5){
+                      _controller.pause();
+                    }
+                    if(notification.direction == ScrollDirection.forward) _showAppBar = true;
+                    else if (notification.direction == ScrollDirection.reverse) _showAppBar = false;
+                  });
+                  return true;
+                },
+                child: Scrollbar(
+                  radius: Radius.circular(20.0),
+                  interactive: true,
+                  child: SingleChildScrollView(
+                    physics: Clam
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(13, 10, 13, 14),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Notifications are for delete, discounts, expenses, Inventory out of stock and so on. You also get a notification when'
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. '
+                                ' Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ',
                             style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0,
+                              color: Colors.black,
+                              fontSize: 19,
+                              wordSpacing: 1.5,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
                           ),
-                        ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.settings,
-                            color: Colors.white,
-                            size: 25.0,
+                          const SizedBox(height: 22),
+                          YoutubePlayerBuilder(
+                            onExitFullScreen: () {
+                              /// The player forces portraitUp after exiting fullscreen. This overrides the behaviour.
+                              SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+                            },
+                            onEnterFullScreen: () {
+                              SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+                            },
+                            player: YoutubePlayer(
+                              controller: _controller,
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.orange,
+                              topActions: [
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    _controller.metadata.title,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18.0,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.settings,
+                                    color: Colors.white,
+                                    size: 25.0,
+                                  ),
+                                  onPressed: () {
+                                    log('Settings Tapped!');
+                                  },
+                                ),
+                              ],
+                              onReady: () {
+                                _isPlayerReady = true;
+                              },
+                              onEnded: (data) {
+                                _controller.reset();
+                              },
+                            ),
+                            builder: (context , player ) {
+                              return player;
+                            },
                           ),
-                          onPressed: () {
-                            log('Settings Tapped!');
-                          },
-                        ),
-                      ],
-                      onReady: () {
-                        _isPlayerReady = true;
-                      },
-                      onEnded: (data) {
-                        _controller.reset();
-                      },
+                        ],
+                      ),
                     ),
-                    builder: (context , player ) {
-                      return player;
-                    },
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          }
         ),
       ),
     );
   }
 }
-// CustomScrollView(
-//   slivers: [
-//     SliverAppBar(
-//       floating: true,
-//       title: Text(
-//       'Note '+ noteNumber,
-//       ),
-//     ),
-//     SliverPadding(
-//       padding: const EdgeInsets.symmetric(horizontal: 3.0),
-//       sliver: SliverList(
-//       delegate: null,
-//       ),
-//     ),
-//   ],
-// ),

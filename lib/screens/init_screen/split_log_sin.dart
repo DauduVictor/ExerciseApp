@@ -145,9 +145,9 @@ class _SplitState extends State<Split> with TickerProviderStateMixin{
                             borderRadius: BorderRadius.circular(8.2),
                             border: Border.all(
                               width: constraints.maxWidth*0.003,
-                              color: Color(0xFFF0F0F0),
+                              color: const Color(0xFFF0F0F0),
                             ),
-                            color: Color(0xFFF0F0F0),
+                            color: const Color(0xFFF0F0F0),
                           ),
                           child: TextButton(
                             onPressed: () {
@@ -156,8 +156,8 @@ class _SplitState extends State<Split> with TickerProviderStateMixin{
                                   PageTransition(type:PageTransitionType.fade, child:  SignUp()));
                             },
                             style: TextButton.styleFrom(
-                              padding: EdgeInsets.all(0.0),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.4),),
+                              padding: const EdgeInsets.all(0.0),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.4)),
                             ),
                             child: const Center(
                               child: Text(

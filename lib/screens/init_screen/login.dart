@@ -384,7 +384,7 @@ class _LoginState extends State<Login> {
       setState(() {
         _showSpinner = false;
       });
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           PageTransition(type:PageTransitionType.fade, child:  Dashboard()));
     });

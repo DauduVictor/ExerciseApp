@@ -54,7 +54,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       vsync: this,
     );
 
-    _elevationAnimation = Tween(begin: 1.0, end: 20.0).animate(_controller);
+    _elevationAnimation = Tween(begin: 1.0, end: 25.0).animate(_controller);
 
     /// Make the [Animation_Controller] know about the new values being fired
     _controller.addListener(() {
@@ -422,9 +422,8 @@ Widget _bottomModalSheet(BoxConstraints constraints) {
                             ),
                             TextButton(
                               onPressed: (){
-                                //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
                                 Navigator.pop(context);
-                                Navigator.of(context).pushNamedAndRemoveUntil(SplashScreen.id, (Route<dynamic>route) => false);
+                                Navigator.pushReplacementNamed(context, SplashScreen.id);
                               },
                               child: Text('Logout'),
                             ),
