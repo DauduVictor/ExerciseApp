@@ -31,7 +31,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   var location = LocationHelper();
 
   /// Variable to hold the greeting
-  String? greeting;
+  String? _greeting;
 
   /// Variable to hold the animation controller
   late AnimationController _controller;
@@ -39,10 +39,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   /// Variable to hold the tween value of the animation
   late Animation<double> _elevationAnimation;
 
-  ///Variable to hold the temperature
+  ///Variable to hold the latitude
   double? lat;
 
-  ///Variable to hold the temperature
+  ///Variable to hold the longitude
   double? lon;
 
   /// Function that shows greetings based on the users local time
@@ -51,9 +51,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     ///Instance of [DateTime] class
     var now = DateTime.now().hour;
 
-    if (now < 12) setState(() => greeting = 'Good Morning') ;
-    else if (now < 17) setState(() => greeting = 'Good Afternoon');
-    else setState(() => greeting = 'Good Evening');
+    if (now < 12) setState(() => _greeting = 'Good Morning') ;
+    else if (now < 17) setState(() => _greeting = 'Good Afternoon');
+    else setState(() => _greeting = 'Good Evening');
   }
 
   ///Function to get users long and lat with [Location_Helper]
@@ -137,7 +137,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    greeting != null ? greeting! : 'Good day',
+                                    _greeting != null ? _greeting! : 'Good day',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 36,
@@ -269,9 +269,11 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                     ),
                                     child: GestureDetector(
                                       onTap: () {
+                                        print(lat);
+                                        print(lon);
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => Maps()));
+                                          MaterialPageRoute(builder: (context) => Maps(longitude: lon, latitude: lat,)));
                                       },
                                       child:  Padding(
                                         padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),

@@ -8,8 +8,8 @@ class Functions{
       msg: message,
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.BOTTOM,
-      backgroundColor: const Color(0xFFFFFFFF),
-      textColor: Colors.black,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
       fontSize: 16.0,
     );
   }

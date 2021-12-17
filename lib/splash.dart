@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:untitled1/screens/dashboard/dashboard.dart';
 import 'package:untitled1/screens/init_screen/split_log_sin.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     _navigate();
   }
+
   @override
   Widget build(BuildContext context) {
     return const SafeArea(

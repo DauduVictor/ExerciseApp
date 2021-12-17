@@ -1,15 +1,70 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Maps extends StatefulWidget {
 
   static const String id = 'maps';
-  const Maps({Key? key}) : super(key: key);
+
+  final double? latitude;
+  final double? longitude;
+
+  const Maps({
+    this.latitude,
+    this.longitude,
+    Key? key
+  }) : super(key: key);
 
   @override
   _MapsState createState() => _MapsState();
 }
 
 class _MapsState extends State<Maps> {
+
+  /// Variable to hold the current position of the user using lat and long
+  CameraPosition? userPosition;
+
+  /// Controller to hold the Google Maps
+  Completer<GoogleMapController> _controller = Completer();
+
+  /// Variable to hold the lat
+  double? lat;
+
+  /// Variable to hold the lon
+  double? lon;
+
+  /// Function to gets user location and up
+  void _getLocation() {
+    setState(() {
+      lat = widget.latitude;
+      lon = widget.longitude;
+    });
+
+    userPosition = CameraPosition(
+      target: LatLng(lat!, lon!),
+      zoom: 14.0,
+    );
+
+    print(userPosition);
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
+  }
+
+  // void _oncameraMove(CameraPosition position) {
+  //   userPosition = position.target as CameraPosition?;
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    _getLocation();
+    print(widget.latitude);
+    print(widget.longitude);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,18 +74,14 @@ class _MapsState extends State<Maps> {
             children: [
               Container(
                   height: constraints.maxHeight,
-                  child: const Center(
-                    child: Text(
-                      'MAPS',
-                      style: TextStyle(
-                        fontSize: 50,
-                        color: Colors.black
-                      ),
-                    ),
-                  )
+                  child: GoogleMap(
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: userPosition!,
+                    // markers: _markers,
+                  ),
               ),
               Positioned(
-                left: 34,
+                left: 30,
                 top: 50,
                 child: Material(
                   elevation: 7,
